@@ -1,0 +1,63 @@
+<md-toolbar flex>
+  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+    <md-button class="md-icon-button" aria-label="Menu" ng-click="main.toggle()">
+      <md-icon>menu</md-icon>
+    </md-button>
+    <p>{{ main.title }}</p>
+    <div style="width: 40px; height: 40px;"></div>
+  </div>
+</md-toolbar>
+
+<md-sidenav class="md-sidenav-left" md-component-id="left">
+  <md-toolbar>
+    <h1 class="md-toolbar-tools">{{ main.title }}</h1>
+  </md-toolbar>
+  <md-list ng-cloak>
+    <md-list-item ng-href="#/main">
+      <md-icon style="padding-right: 16px; color: #000000">home</md-icon>
+      <p>Home</p>
+    </md-list-item>
+    <md-list-item ng-href="#/speakers">
+      <md-icon style="padding-right: 16px; color: #000000">people</md-icon>
+      <p>Speakers</p>
+    </md-list-item>
+    <md-list-item ng-href="#/shuttle">
+      <md-icon style="padding-right: 16px; color: #000000">directions_bus</md-icon>
+      <p>Shuttle</p>
+    </md-list-item>
+  </md-list>
+</md-sidenav>
+
+<div layout="column" layout-align="center center" flex>
+
+ <md-list ng-cloak>
+    <md-list-item ng-href="#/main">
+      <md-icon style="padding-right: 16px; color: #000000">home</md-icon>
+      <p>Home</p>
+    </md-list-item>
+    <md-list-item ng-href="#/speakers">
+      <md-icon style="padding-right: 16px; color: #000000">people</md-icon>
+      <p>Speakers</p>
+    </md-list-item>
+    <md-list-item ng-href="#/shuttle">
+      <md-icon style="padding-right: 16px; color: #000000">directions_bus</md-icon>
+      <p>Shuttle</p>
+    </md-list-item>
+  </md-list>
+
+  <md-whiteframe class="md-whiteframe-3dp" layout="column" style="margin: 1em; width: 22em; height: 15em;" flex>
+    <div layout="column" flex style="margin-left: 1em;">
+      <p>This app is totally not useless</p>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" layout-align="space-around center" flex="20">
+      <md-button class="md-icon-button">
+        <md-icon style="color: #000000">book</md-icon>
+      </md-button>
+      <md-button class="md-icon-button">
+        <md-icon style="color: #000000">favorite</md-icon>
+      </md-button>
+    </div>
+  </md-whiteframe>
+
+</div>
