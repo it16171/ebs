@@ -1,0 +1,44 @@
+<md-content layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+      <md-button class="md-icon-button" onclick="history.back();">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p>{{ schedule.title }}</p>
+      <div style="width: 40px; height: 40px;"></div>
+    </div>
+  </md-toolbar>
+  <md-tabs md-stretch-tabs="auto" md-swipe-content="true" class="md-primary">
+      <md-tab label="Thu 28th">
+        <md-content>
+          <md-card ng-repeat="session in schedule.schedule | filter: session.starred">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{session.title}}</span>
+                <span class="md-subhead">{{session.speaker.name}}</span>
+                <span class="md-subhead">{{session.time}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media">
+                  <a ng-href="#/speakers/{{session.speaker.name}}"><img ng-src="img/speakers/{{session.speaker.id}}.jpg" class="md-card-image"></a>
+                </div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button class="md-icon-button" ng-click="session.starred = !session.starred">
+                <md-icon ng-class="session.starred ? 'md-accent' : ''">{{session.starred ? 'star' : 'star_border'}}</md-icon>
+              </md-button>
+            </md-card-actions>
+          </md-card>
+        </md-content>
+      </md-tab>
+      <md-tab label="Fri 29th">
+        <md-content class="md-padding">
+        </md-content>
+      </md-tab>
+      <md-tab label="Sat 30th">
+        <md-content class="md-padding">
+        </md-content>
+      </md-tab>
+  </md-tabs>
+</md-content>

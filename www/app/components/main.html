@@ -1,0 +1,19 @@
+<md-toolbar flex>
+  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+    <md-button class="md-icon-button">
+       <img class="png-icon" src="img/logo_white.png" style="width: 24px; height: 24px;">
+    </md-button>
+    <p>{{ main.title }}</p>
+    <div style="width: 40px; height: 40px;"></div>
+  </div>
+</md-toolbar>
+
+<md-content>
+  <md-list flex>
+    <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
+      <md-icon ng-if="view.icon.indexOf('/') != -1" md-svg-src="{{view.icon.indexOf('/') != -1 ? view.icon : ''}}"></md-icon>
+      <md-icon ng-if="view.icon.indexOf('/') == -1">{{view.icon}}</md-icon>
+      <p>{{view.title}}</p>
+    </md-list-item>
+  </md-list>
+</md-content>

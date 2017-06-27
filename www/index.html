@@ -68,11 +68,19 @@
     <script type="text/javascript" src="app/shared/shared-service.js"></script>
 
     <!-- Controllers -->
-    <script type="text/javascript" src="app/components/main/main-controller.js"></script>
+    <script type="text/javascript" src="app/components/main.js"></script>
+    <script type="text/javascript" src="app/components/schedule.js"></script>
+    <script type="text/javascript" src="app/components/speakers.js"></script>
+
+    <style>ui-view { display: inherit; }
+ui-view > * { width: 100%; }</style>
+
+
     <title>EBS Symposium 2017</title>
 </head>
 
-<body style="position: fixed;" ng-cloak>
+<body ng-cloak>
+    
     <ui-view></ui-view>
 </body>
 

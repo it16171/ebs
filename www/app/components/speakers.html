@@ -1,0 +1,28 @@
+<md-content layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+      <md-button class="md-icon-button" onclick="history.back();">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p>{{ speakers.title }}</p>
+      <div style="width: 40px; height: 40px;"></div>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <div flex-xs flex-gt-xs="50" layout="column">
+        <md-card ng-repeat="speaker in speakers.speakers | filter: speakers.speakerId">
+          <img ng-src="img/speakers/{{speaker.id}}.jpg" class="md-card-image">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{speaker.name}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <p>{{speaker.desc}}</p>
+          </md-card-content>
+        </md-card>
+    </div>
+  </md-content> 
+  
+</md-content>
+
