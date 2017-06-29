@@ -10,7 +10,7 @@
       </md-button>
     </div>
   </md-toolbar>
-  <md-tabs md-stretch-tabs="auto" md-swipe-content="true" class="md-primary" flex>
+  <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
       <md-tab label="Thu 28th" layout-fill>
         <md-content class="card-bg" layout-fill>
           <md-card ng-repeat="session in filtered = (schedule.schedule | filter:{day:28}:true | filter:schedule.personalFilter)">
