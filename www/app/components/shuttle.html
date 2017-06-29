@@ -1,19 +1,24 @@
-<md-toolbar flex>
-  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-    <md-button class="md-icon-button" aria-label="Menu" ng-click="main.toggle()">
-      <md-icon>menu</md-icon>
-    </md-button>
-    <p>{{ main.title }}</p>
-    <div style="width: 40px; height: 40px;"></div>
-  </div>
-</md-toolbar>
-
-<md-content>
-  <md-list flex>
-    <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-      <md-icon ng-if="view.icon.indexOf('/') != -1" md-svg-src="{{view.icon.indexOf('/') != -1 ? view.icon : ''}}"></md-icon>
-      <md-icon ng-if="view.icon.indexOf('/') == -1">{{view.icon}}</md-icon>
-      <p>{{view.title}}</p>
-    </md-list-item>
-  </md-list>
+<md-content layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" onclick="history.back();">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p>{{ shuttle.title }}</p>
+    </div>
+  </md-toolbar>
+  <md-tabs md-stretch-tabs="auto" md-swipe-content="true" class="md-primary">
+      <md-tab label="List">
+        <md-content>
+          <p>Liste</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="Map">
+        <md-content>
+          <div map-lazy-load="https://maps.google.com/maps/api/js">
+            <ng-map center="50,10" zoom="10" style="height:500px;"></ng-map>
+          </div>
+        </md-content>
+      </md-tab>
+  </md-tabs>
 </md-content>

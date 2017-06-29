@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage" ])
+angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "ngMap" ])
 // ngTouch is No Longer Supported by Angular-Material
 
 .run(function($rootScope, $cordovaDevice, $cordovaStatusbar){
@@ -17,6 +17,8 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage" ])
         e.preventDefault();
       }
     }, false);*/
+
+    
 })
 
 .config(function($mdThemingProvider, $mdGestureProvider) { // Angular-Material Color Theming

@@ -1,6 +1,6 @@
 <md-content layout="column" layout-fill>
-  <md-toolbar>
-    <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+  <md-toolbar class="md-whiteframe-4dp">
+    <div class="md-toolbar-tools">
       <md-button class="md-icon-button" onclick="history.back();">
         <md-icon>arrow_back</md-icon>
       </md-button>
@@ -8,7 +8,7 @@
       <div style="width: 40px; height: 40px;"></div>
     </div>
   </md-toolbar>
-  <md-content>
+  <md-content class="card-bg">
     <div flex-xs flex-gt-xs="50" layout="column">
         <md-card ng-repeat="speaker in speakers.speakers | filter: speakers.speakerId">
           <img ng-src="img/speakers/{{speaker.id}}.jpg" class="md-card-image">

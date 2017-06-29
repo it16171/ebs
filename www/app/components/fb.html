@@ -9,11 +9,5 @@
 </md-toolbar>
 
 <md-content>
-  <md-list flex>
-    <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-      <md-icon ng-if="view.icon.indexOf('/') != -1" md-svg-src="{{view.icon.indexOf('/') != -1 ? view.icon : ''}}"></md-icon>
-      <md-icon ng-if="view.icon.indexOf('/') == -1">{{view.icon}}</md-icon>
-      <p>{{view.title}}</p>
-    </md-list-item>
-  </md-list>
+  <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Febs.symposium&tabs=timeline&width=500&height=1000&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" style="border:none;overflow:hidden;position:absolute;top:40px;bottom:40px;width:100%;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 </md-content>

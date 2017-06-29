@@ -20,7 +20,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controllerAs: "schedule"
     });
 
-    $stateProvider.state("speakers", {
+    $stateProvider.state("speakersdetail", {
         url: "/speakers/{speakerId}",
         templateUrl: "app/components/speakers.html",
         title: "Speakers",
@@ -28,12 +28,28 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controllerAs: "speakers"
     });
 
-    $stateProvider.state("speakersd", {
+    $stateProvider.state("speakers", {
         url: "/speakers",
         templateUrl: "app/components/speakers.html",
         title: "Speakers",
         controller: "SpeakersController",
         controllerAs: "speakers"
+    });
+
+    $stateProvider.state("partners", {
+        url: "/partners",
+        templateUrl: "app/components/partners.html",
+        title: "Partners",
+        controller: "PartnersController",
+        controllerAs: "partners"
+    });
+
+    $stateProvider.state("shuttle", {
+        url: "/shuttle",
+        templateUrl: "app/components/shuttle.html",
+        title: "Shuttle Pick Up Locations",
+        controller: "ShuttleController",
+        controllerAs: "shuttle"
     });
 
 
