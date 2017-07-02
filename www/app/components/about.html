@@ -1,19 +1,20 @@
-<md-toolbar flex>
-  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-    <md-button class="md-icon-button" aria-label="Menu" ng-click="main.toggle()">
-      <md-icon>menu</md-icon>
-    </md-button>
-    <p>{{ main.title }}</p>
-    <div style="width: 40px; height: 40px;"></div>
-  </div>
-</md-toolbar>
+<md-content layout="column" layout-fill>
+  <md-toolbar class="md-whiteframe-4dp">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" onclick="history.back();">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p>{{ about.title }}</p>
+    </div>
+  </md-toolbar>
 
-<md-content>
-  <md-list flex>
-    <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-      <md-icon ng-if="view.icon.indexOf('/') != -1" md-svg-src="{{view.icon.indexOf('/') != -1 ? view.icon : ''}}"></md-icon>
-      <md-icon ng-if="view.icon.indexOf('/') == -1">{{view.icon}}</md-icon>
-      <p>{{view.title}}</p>
-    </md-list-item>
-  </md-list>
+  <md-content>
+   
+      <div flex="50" ng-repeat="partner in partners.partners">
+        <md-card>
+          <img ng-src="img/partners/{{partner.id}}.jpg" class="md-card-image">
+        </md-card>
+      </div>
+
+  </md-content>  
 </md-content>

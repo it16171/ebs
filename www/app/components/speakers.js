@@ -4,7 +4,7 @@ angular.module("ngapp").controller("SpeakersController", function(shared, $state
 
     var ctrl = this;
 
-    this.speakers = shared.speakers;
+    this.speakers = shared.data.speakers;
 
     this.title = $state.current.title;
     this.speakerId = $state.params.speakerId;

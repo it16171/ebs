@@ -17,12 +17,13 @@
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
-                <span class="md-subhead">{{session.speaker.name}}</span>
+                <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
                 <span class="md-subhead">{{session.time}}</span>
+                <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media">
-                  <a ng-href="#/speakers/{{session.speaker.id}}"><img ng-src="img/speakers/{{session.speaker.id}}.jpg" class="md-card-image"></a>
+                  <a ng-href="#/speakers/{{session.speakerId}}"><img ng-src="img/speakers/{{session.speakerId}}.jpg" class="md-card-image"></a>
                 </div>
               </md-card-title-media>
             </md-card-title>
@@ -41,12 +42,13 @@
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
-                <span class="md-subhead">{{session.speaker.name}}</span>
+                <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
                 <span class="md-subhead">{{session.time}}</span>
+                <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media">
-                  <a ng-href="#/speakers/{{session.speaker.id}}"><img ng-src="img/speakers/{{session.speaker.id}}.jpg" class="md-card-image"></a>
+                  <a ng-href="#/speakers/{{session.speakerId}}"><img ng-src="img/speakers/{{session.speakerId}}.jpg" class="md-card-image"></a>
                 </div>
               </md-card-title-media>
             </md-card-title>
@@ -65,12 +67,13 @@
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
-                <span class="md-subhead">{{session.speaker.name}}</span>
+                <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
                 <span class="md-subhead">{{session.time}}</span>
+                <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media">
-                  <a ng-href="#/speakers/{{session.speaker.id}}"><img ng-src="img/speakers/{{session.speaker.id}}.jpg" class="md-card-image"></a>
+                  <a ng-href="#/speakers/{{session.speakerId}}"><img ng-src="img/speakers/{{session.speakerId}}.jpg" class="md-card-image"></a>
                 </div>
               </md-card-title-media>
             </md-card-title>

@@ -1,18 +1,22 @@
 <md-toolbar flex class="md-whiteframe-4dp">
-  <div class="md-toolbar-tools">
-    <md-button class="md-icon-button">
-       <img class="png-icon" src="img/logo_white.png" style="width: 24px; height: 24px;">
-    </md-button>
-    <p>{{ main.title }}</p>
-  </div>
+  <div><img class="" src="img/logo_big.png" style="margin: 10px auto;display:block;max-width:90%;"></div>
+ 
 </md-toolbar>
 
 <md-content>
+  <p layout-padding ng-if="main.isUpdateRequired()" md-colors="{color:'warn'}">Apparently, the app is outdated. Please update via your app store.</p>
   <md-list flex>
     <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-      <md-icon ng-if="view.icon.indexOf('/') != -1" md-svg-src="{{view.icon.indexOf('/') != -1 ? view.icon : ''}}"></md-icon>
-      <md-icon ng-if="view.icon.indexOf('/') == -1">{{view.icon}}</md-icon>
+      <md-icon>{{view.icon}}</md-icon>
       <p>{{view.title}}</p>
+    </md-list-item>
+    <md-list-item ng-href="https://www.facebook.com/ebs.symposium/">
+      <md-icon md-svg-src="img/fb.svg"></md-icon>
+      <p>Facebook</p>
+    </md-list-item>
+    <md-list-item ng-href="#/about">
+      <md-icon>info_outline</md-icon>
+      <p>About</p>
     </md-list-item>
   </md-list>
 </md-content>

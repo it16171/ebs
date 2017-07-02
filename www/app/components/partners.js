@@ -4,7 +4,7 @@ angular.module("ngapp").controller("PartnersController", function(shared, $state
 
     var ctrl = this;
 
-    this.partners = shared.partners;
+    this.partners = shared.data.partners;
 
     this.title = $state.current.title;
 });

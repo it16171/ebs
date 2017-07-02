@@ -93,9 +93,46 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     ],
     'contrastLightColors': []
   });
+
+  $mdThemingProvider.definePalette('ebswarn', {
+  '50': 'f6e1e1',
+  '100': 'e8b5b3',
+  '200': 'd98381',
+  '300': 'c9514e',
+  '400': 'be2c28',
+  '500': 'b20702',
+  '600': 'ab0602',
+  '700': 'a20501',
+  '800': '990401',
+  '900': '8a0201',
+  'A100': 'ffb6b6',
+  'A200': 'ff8383',
+  'A400': 'ff5050',
+  'A700': 'ff3636',
+  'contrastDefaultColor': 'light',
+  'contrastDarkColors': [
+    '50',
+    '100',
+    '200',
+    'A100',
+    'A200',
+    'A400'
+  ],
+  'contrastLightColors': [
+    '300',
+    '400',
+    '500',
+    '600',
+    '700',
+    '800',
+    '900',
+    'A700'
+  ]
+});
   $mdThemingProvider.theme('default')
       .primaryPalette('ebsprimary')
-      .accentPalette('ebsaccent');
+      .accentPalette('ebsaccent')
+      .warnPalette('ebswarn');
 
 
 });
