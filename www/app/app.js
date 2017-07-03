@@ -8,6 +8,32 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     $cordovaStatusbar.overlaysWebView(false); // Always Show Status Bar
     $cordovaStatusbar.styleHex('#003d78'); // Status Bar With Red Color, Using Angular-Material Style
     window.plugins.orientationLock.lock("portrait");
+
+alert('yay');
+    window.FirebasePlugin.grantPermission();
+
+    window.FirebasePlugin.hasPermission(function(data){
+        console.log(data.isEnabled);
+        alert(data.isEnabled);
+    }); 
+
+    window.FirebasePlugin.onTokenRefresh(function(token) {
+        // save this server-side and use it to push notifications to this device
+        console.log(token);
+        alert(token);
+    }, function(error) {
+      alert(error);
+        console.error(error);
+    });
+
+    window.FirebasePlugin.onNotificationOpen(function(notification) {
+        console.log(notification);
+        alert(notification);
+    }, function(error) {
+      alert(error);
+        console.error(error);
+    });
+
   }, false);
   /* Hijack Android Back Button (You Can Set Different Functions for Each View by Checking the $state.current)
   document.addEventListener("backbutton", function (e) {
