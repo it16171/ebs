@@ -9,7 +9,7 @@
   </md-toolbar>
   <md-content layout="row" layout-wrap class="card-bg">
    
-      <div flex="50" ng-repeat="partner in partners.partners">
+      <div flex="50" ng-repeat="partner in partners.$storage.data.partners">
         <md-card>
           <img ng-src="img/partners/{{partner.id}}.jpg" class="md-card-image">
         </md-card>

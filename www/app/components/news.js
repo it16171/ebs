@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("MainController", function(shared, $state, $scope, $mdSidenav, $mdComponentRegistry){
+angular.module("ngapp").controller("MainController", function(shared, $state, $scope, $mdComponentRegistry){
 
     var ctrl = this;
 

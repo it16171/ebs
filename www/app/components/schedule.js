@@ -1,11 +1,12 @@
 "use strict";
 
-angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $mdSidenav, $mdComponentRegistry){
+angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdComponentRegistry){
 
     var ctrl = this;
     
     this.personal = shared.settings.personalEventView;
 
+    this.$storage = $localStorage;
     this.starred = shared.settings.starredEvents;
     //TODO refresh after api update
     this.schedule = shared.data.schedule;

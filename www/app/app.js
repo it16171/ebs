@@ -5,11 +5,10 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
 
 .run(function($rootScope, $cordovaDevice, $cordovaStatusbar){
   document.addEventListener("deviceready", function () {
-    $cordovaStatusbar.overlaysWebView(false); // Always Show Status Bar
-    $cordovaStatusbar.styleHex('#003d78'); // Status Bar With Red Color, Using Angular-Material Style
+    $cordovaStatusbar.overlaysWebView(false);
+    $cordovaStatusbar.styleHex('#003d78');
     //window.plugins.orientationLock.lock("portrait");
 
-alert('yay');
     window.FirebasePlugin.grantPermission();
 
     window.FirebasePlugin.hasPermission(function(data){
@@ -33,18 +32,8 @@ alert('yay');
       alert(error);
         console.error(error);
     });
-alert('yay1');
+    alert('yay2');
   }, false);
-  /* Hijack Android Back Button (You Can Set Different Functions for Each View by Checking the $state.current)
-  document.addEventListener("backbutton", function (e) {
-      if($state.is('init')){
-        navigator.app.exitApp();
-      }  else{
-        e.preventDefault();
-      }
-    }, false);*/
-
-
     
 })
 
@@ -122,40 +111,40 @@ alert('yay1');
   });
 
   $mdThemingProvider.definePalette('ebswarn', {
-  '50': 'f6e1e1',
-  '100': 'e8b5b3',
-  '200': 'd98381',
-  '300': 'c9514e',
-  '400': 'be2c28',
-  '500': 'b20702',
-  '600': 'ab0602',
-  '700': 'a20501',
-  '800': '990401',
-  '900': '8a0201',
-  'A100': 'ffb6b6',
-  'A200': 'ff8383',
-  'A400': 'ff5050',
-  'A700': 'ff3636',
-  'contrastDefaultColor': 'light',
-  'contrastDarkColors': [
-    '50',
-    '100',
-    '200',
-    'A100',
-    'A200',
-    'A400'
-  ],
-  'contrastLightColors': [
-    '300',
-    '400',
-    '500',
-    '600',
-    '700',
-    '800',
-    '900',
-    'A700'
-  ]
-});
+    '50': 'f6e1e1',
+    '100': 'e8b5b3',
+    '200': 'd98381',
+    '300': 'c9514e',
+    '400': 'be2c28',
+    '500': 'b20702',
+    '600': 'ab0602',
+    '700': 'a20501',
+    '800': '990401',
+    '900': '8a0201',
+    'A100': 'ffb6b6',
+    'A200': 'ff8383',
+    'A400': 'ff5050',
+    'A700': 'ff3636',
+    'contrastDefaultColor': 'light',
+    'contrastDarkColors': [
+      '50',
+      '100',
+      '200',
+      'A100',
+      'A200',
+      'A400'
+    ],
+    'contrastLightColors': [
+      '300',
+      '400',
+      '500',
+      '600',
+      '700',
+      '800',
+      '900',
+      'A700'
+    ]
+  });
   $mdThemingProvider.theme('default')
       .primaryPalette('ebsprimary')
       .accentPalette('ebsaccent')

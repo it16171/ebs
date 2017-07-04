@@ -1,5 +1,5 @@
 <md-content layout="column" layout-fill>
-  <md-toolbar>
+  <md-toolbar class="md-whiteframe-4dp">
     <div class="md-toolbar-tools">
       <md-button class="md-icon-button" onclick="history.back();">
         <md-icon>arrow_back</md-icon>
@@ -7,18 +7,19 @@
       <p>{{ shuttle.title }}</p>
     </div>
   </md-toolbar>
-  <md-tabs md-stretch-tabs="auto" md-swipe-content="true" class="md-primary">
-      <md-tab label="List">
-        <md-content>
-          <p>Liste</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="Map">
-        <md-content>
-          <div map-lazy-load="https://maps.google.com/maps/api/js">
-            <ng-map center="50,10" zoom="10" style="height:500px;"></ng-map>
-          </div>
-        </md-content>
-      </md-tab>
-  </md-tabs>
+  <md-content layout-padding layout="column" layout-align="center center" ng-if="!shuttle.requested">
+    <p>For EBS Symposium attendees, we're providing a shuttle service from selected pick-up locations. You can let us know at which location you need a shuttle so that we can send you one faster.</p>
+
+    <md-button class="md-accent md-raised" aria-label="Request a shuttle" ng-href="#/shuttleLocations">
+        <md-icon>directions_bus</md-icon> Request a shuttle
+    </md-button>
+  </md-content>
+
+  <md-content layout-padding layout="column" layout-align="center center" ng-if="shuttle.requested">
+    <p>You have requestes a shuttle at</p>
+
+    <md-button class="md-raised" aria-label="Cancel request" ng-click="shuttle.cancelRequest()">
+        Cancel request
+    </md-button>
+  </md-content>
 </md-content>

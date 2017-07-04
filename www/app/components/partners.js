@@ -1,10 +1,10 @@
 "use strict";
 
-angular.module("ngapp").controller("PartnersController", function(shared, $state, $scope, $mdSidenav, $mdComponentRegistry){
+angular.module("ngapp").controller("PartnersController", function(shared, $state, $scope, $localStorage, $mdComponentRegistry){
 
     var ctrl = this;
 
-    this.partners = shared.data.partners;
+    this.$storage = $localStorage;
 
     this.title = $state.current.title;
 });
