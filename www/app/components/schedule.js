@@ -3,26 +3,19 @@
 angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdComponentRegistry){
 
     var ctrl = this;
-    
-    this.personal = shared.settings.personalEventView;
 
     this.$storage = $localStorage;
-    this.starred = shared.settings.starredEvents;
-    //TODO refresh after api update
-    this.schedule = shared.data.schedule;
+    this.s = this.$storage.settings;
 
     this.title = $state.current.title;
 
 
     this.personalFilter = function(session) {
-        return !ctrl.personal || ctrl.starred[session.id];
+        return !ctrl.$storage.settings.personalEventsView || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
     }
 
-    this.persist = function() {
-        shared.settings.personalEventView = this.personal;
-        shared.persist();
+    this.getSpeakerById = function (speakerId) {
+        return shared.getObjectById(speakerId, ctrl.$storage.data.speakers);
     }
-
-    this.getSpeakerById = shared.getSpeakerById;
     
 });

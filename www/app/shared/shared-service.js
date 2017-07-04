@@ -1,9 +1,10 @@
 "use strict";
 
-angular.module("ngapp").service("shared", function($http, $localStorage){ 
+angular.module("ngapp").service("shared", function($http, $localStorage, $mdToast){ 
 
     var ctrl = this;
     this.$storage = $localStorage;
+    if(!this.$storage.settings) this.$storage.settings = {};
 
     this.updateRequired = false;
     this.defaultData = {
@@ -22,16 +23,11 @@ angular.module("ngapp").service("shared", function($http, $localStorage){
         ]
     };
 
-    this.getSpeakerById = function(speakerId) {
-        for (var i=0;i<ctrl.data.speakers.length;i++) {
-            if (ctrl.data.speakers[i].id == speakerId) return ctrl.data.speakers[i];
+    this.getObjectById = function(needle, haystack) {
+        for (var i=0;i<haystack.length;i++) {
+            if (haystack[i].id == needle) return haystack[i];
         }
         return null;
-    }
-    
-    this.persist = function() {
-        console.log(ctrl.settings);
-        ctrl.storage.setItem("settings", JSON.stringify(ctrl.settings));
     }
 
     this.isCurrentData = function(incomingData) {
@@ -49,14 +45,23 @@ angular.module("ngapp").service("shared", function($http, $localStorage){
         this.$storage.data = this.defaultData;
     }
     
-    $http.get('https://ebs.api.nubenum.de/v1/data.json?appv='+ctrl.appv)
+    $http.get('https://ebs.api.nubenum.de/v1/data.json?appv='+ctrl.defaultData.meta.appv)
     .then(function(response) {
+console.log(response.data, ctrl.$storage.data);
         if (ctrl.isCurrentData(response.data)) {
             ctrl.$storage.data = response.data;
             console.log(ctrl.$storage.data);
         }
     });  
 
+    this.getUniqueToken = function () {
+        //TODO gen token if fcmt not set
+        return ctrl.$storage.settings.fcmt;
+    }
+
+    
+
+    
     
     
 });

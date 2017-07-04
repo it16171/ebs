@@ -1,15 +1,17 @@
 "use strict";
 
-angular.module("ngapp").controller("ShuttleLocationsController", function(shared, NgMap, $state, $scope, $mdComponentRegistry, $http){
+angular.module("ngapp").controller("ShuttleLocationsController", function(shared, NgMap, $state, $scope, $localStorage, $mdComponentRegistry, $mdToast, $http){
 
     var ctrl = this;
 
-    this.locations = shared.data.pickupLocations;
+    this.$storage = $localStorage;
 
-    this.requestShuttle = function (location) {
+    this.requestShuttle = function (locationId) {
         
-      $http('https://ebs.api.nubenum.de/v1/requestShuttle.php?location='+location.id+'&fcmt='+shared.settings.fcmt).then(function successCallback(response) {
-         ctrl.$state.transitionTo('shuttle');
+      $http({method: 'GET',url: 'https://ebs.api.nubenum.de/v1/shuttle.php?do=request&location='+locationId+'&fcmt='+shared.getUniqueToken()})
+      .then(function successCallback(response) {
+        ctrl.$storage.settings.shuttleRequestedTo = locationId;
+        $state.transitionTo('shuttle');
       }, function errorCallback(response) {
         $mdToast.show(
           $mdToast.simple()

@@ -7,7 +7,7 @@
       <p>{{ shuttle.title }}</p>
     </div>
   </md-toolbar>
-  <md-content layout-padding layout="column" layout-align="center center" ng-if="!shuttle.requested">
+  <md-content layout-padding layout="column" layout-align="center center" ng-if="!shuttle.$storage.settings.shuttleRequestedTo">
     <p>For EBS Symposium attendees, we're providing a shuttle service from selected pick-up locations. You can let us know at which location you need a shuttle so that we can send you one faster.</p>
 
     <md-button class="md-accent md-raised" aria-label="Request a shuttle" ng-href="#/shuttleLocations">
@@ -15,10 +15,18 @@
     </md-button>
   </md-content>
 
-  <md-content layout-padding layout="column" layout-align="center center" ng-if="shuttle.requested">
-    <p>You have requestes a shuttle at</p>
+  <md-content layout-padding layout="column" layout-align="center center" ng-if="shuttle.$storage.settings.shuttleRequestedTo">
+    <p>You have requested a shuttle at <b>{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).name}}</b>.</p>
 
-    <md-button class="md-raised" aria-label="Cancel request" ng-click="shuttle.cancelRequest()">
+    <p ng-if="shuttle.$storage.settings.shuttleStatus==2" md-colors="{color:'warn'}">Your shuttle is on its way.</p>
+    <p ng-if="shuttle.$storage.settings.shuttleStatus==3" md-colors="{color:'warn'}">
+      As far as we can tell, you were successfully picked up. Still left in the rain?
+      <md-button class="md-raised" aria-label="New request" ng-href="#/shuttleLocations">
+          New request
+      </md-button>    
+    </p>
+
+    <md-button class="md-raised" aria-label="Cancel request" ng-click="shuttle.cancelShuttle()">
         Cancel request
     </md-button>
   </md-content>

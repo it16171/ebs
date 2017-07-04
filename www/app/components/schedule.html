@@ -5,15 +5,15 @@
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p flex>{{ schedule.title }}</p>
-      <md-button class="md-icon-button" ng-click="schedule.personal = !schedule.personal;schedule.persist()" aria-label="Filter">
-        <md-icon ng-class="schedule.personal ? 'md-accent' : ''">{{schedule.personal ? 'star' : 'star_border'}}</md-icon>
+      <md-button class="md-icon-button" ng-click="schedule.s.personalEventsView = !schedule.s.personalEventsView;" aria-label="Filter">
+        <md-icon>{{schedule.s.personalEventsView ? 'star' : 'star_border'}}</md-icon>
       </md-button>
     </div>
   </md-toolbar>
   <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
       <md-tab label="Thu 28th" layout-fill>
         <md-content class="card-bg" layout-fill>
-          <md-card ng-repeat="session in filtered = (schedule.schedule | filter:{day:28}:true | filter:schedule.personalFilter)">
+          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:28}:true | filter:schedule.personalFilter)">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
@@ -28,8 +28,8 @@
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.starred[session.id] = !schedule.starred[session.id];schedule.persist()">
-                <md-icon ng-class="!!schedule.starred[session.id] ? 'md-accent' : ''">{{!!schedule.starred[session.id] ? 'star' : 'star_border'}}</md-icon>
+              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
+                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
               </md-button>
             </md-card-actions>
           </md-card>
@@ -38,7 +38,7 @@
       </md-tab>
       <md-tab label="Fri 29th">
         <md-content class="card-bg">
-          <md-card ng-repeat="session in filtered = (schedule.schedule | filter:{day:29}:true | filter:schedule.personalFilter)">
+          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:29}:true | filter:schedule.personalFilter)">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
@@ -53,8 +53,8 @@
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.starred[session.id] = !schedule.starred[session.id];schedule.persist()">
-                <md-icon ng-class="!!schedule.starred[session.id] ? 'md-accent' : ''">{{!!schedule.starred[session.id] ? 'star' : 'star_border'}}</md-icon>
+              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
+                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
               </md-button>
             </md-card-actions>
           </md-card>
@@ -63,7 +63,7 @@
       </md-tab>
       <md-tab label="Sat 30th">
         <md-content class="card-bg">
-          <md-card ng-repeat="session in filtered = (schedule.schedule | filter:{day:30}:true | filter:schedule.personalFilter)">
+          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:30}:true | filter:schedule.personalFilter)">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
@@ -78,8 +78,8 @@
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.starred[session.id] = !schedule.starred[session.id];schedule.persist()">
-                <md-icon ng-class="!!schedule.starred[session.id] ? 'md-accent' : ''">{{!!schedule.starred[session.id] ? 'star' : 'star_border'}}</md-icon>
+              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
+                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
               </md-button>
             </md-card-actions>
           </md-card>
