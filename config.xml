@@ -10,6 +10,7 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
+    <access origin="*"/>
     <plugin name="cordova-plugin-firebase" spec="https://phonegap:nubenum-phonegap@git.nubenum.de/robin/cordova-plugin-firebase-ebs.git" />
    <!--> <plugin name="cordova-plugin-firebase" spec="0.1.21" />-->
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
