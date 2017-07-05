@@ -1,19 +1,37 @@
 "use strict";
 
-angular.module("ngapp").controller("MainController", function(shared, $state, $scope, $mdComponentRegistry){
+angular.module("ngapp").controller("NewsController", function(shared, $state, $scope, $localStorage, $http, $mdToast, $mdComponentRegistry){
 
     var ctrl = this;
-
-    this.views = [
-        {id: 'main', title: 'Home', icon: 'home'},
-        {id: 'schedule', title: 'Schedule', icon: 'schedule'},
-        {id: 'speakers', title: 'Speakers', icon: 'people'},
-        {id: 'shuttle', title: 'Shuttle', icon: 'directions_bus'},
-        {id: 'news', title: 'News', icon: 'feedback'},
-        {id: 'fb', title: 'Facebook', icon: 'img/fb.svg'},
-        {id: 'about', title: 'About', icon: 'info_outline'},
-    ];
-
-
     this.title = $state.current.title;
+    this.$storage = $localStorage;
+
+    this.subscribe = function() {
+        document.addEventListener("deviceready", function () {
+            if (ctrl.$storage.settings.pushNews) {
+                console.log('enable push');                
+                window.FirebasePlugin.subscribe("news");
+            } else {
+                console.log('disable push');
+                window.FirebasePlugin.unsubscribe("news");
+            }
+        }, false);
+    }
+
+    this.getNews = function () {
+      $http({method: 'GET',url: 'https://ebs.api.nubenum.de/v1/news.json'})
+      .then(function successCallback(response) {
+            console.log('news updated');
+            ctrl.$storage.news = response.data;
+      }, function errorCallback(response) {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('It appears that you have no internet connection. The news can\'t be updated.')
+            .hideDelay(5000)
+        );
+      });     
+    }
+
+    this.getNews();
+
 });

@@ -1,7 +1,7 @@
 <md-content layout="column" layout-fill>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" onclick="history.back();">
+      <md-button class="md-icon-button" ng-href="#/main">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p>{{ shuttleLocations.title }}</p>
@@ -13,7 +13,7 @@
           <md-list flex>
             <md-list-item ng-repeat="location in shuttleLocations.$storage.data.pickupLocations" class="secondary-button-padding">
               <p>{{ location.name }}</p>
-              <md-button class="md-secondary" ng-click="shuttleLocations.requestShuttle(location.id)">Request</md-button>
+              <md-button class="md-secondary" ng-click="shuttleLocations.requestShuttle(location.id)">Request now</md-button>
             </md-list-item>
           </md-list>
         </md-content>

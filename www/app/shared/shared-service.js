@@ -6,6 +6,8 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
     this.$storage = $localStorage;
     if(!this.$storage.settings) this.$storage.settings = {};
 
+    this.lastNotification = null;
+    
     this.updateRequired = false;
     this.defaultData = {
         "meta" : {"ts" : 100, "appv" : 1, "apiv": 1},
@@ -56,6 +58,10 @@ console.log(response.data, ctrl.$storage.data);
 
     this.getUniqueToken = function () {
         //TODO gen token if fcmt not set
+        if (!ctrl.$storage.settings.fcmt) { 
+            var d = new Date();
+            ctrl.$storage.settings.fcmt = "substitute-"+d.getTime();
+        }
         return ctrl.$storage.settings.fcmt;
     }
 

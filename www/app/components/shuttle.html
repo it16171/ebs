@@ -1,33 +1,33 @@
 <md-content layout="column" layout-fill>
   <md-toolbar class="md-whiteframe-4dp">
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" onclick="history.back();">
+      <md-button class="md-icon-button" ng-href="#/main">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p>{{ shuttle.title }}</p>
     </div>
   </md-toolbar>
-  <md-content layout-padding layout="column" layout-align="center center" ng-if="!shuttle.$storage.settings.shuttleRequestedTo">
-    <p>For EBS Symposium attendees, we're providing a shuttle service from selected pick-up locations. You can let us know at which location you need a shuttle so that we can send you one faster.</p>
+  <md-content layout="column" layout-align="center center" ng-if="!shuttle.$storage.settings.shuttleRequestedTo">
+    <p layout-padding>For EBS Symposium attendees, we're providing a shuttle service from selected pick-up locations. You can let us know at which location you need a shuttle so that we can send you one faster.</p>
 
     <md-button class="md-accent md-raised" aria-label="Request a shuttle" ng-href="#/shuttleLocations">
         <md-icon>directions_bus</md-icon> Request a shuttle
     </md-button>
   </md-content>
 
-  <md-content layout-padding layout="column" layout-align="center center" ng-if="shuttle.$storage.settings.shuttleRequestedTo">
-    <p>You have requested a shuttle at <b>{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).name}}</b>.</p>
-
-    <p ng-if="shuttle.$storage.settings.shuttleStatus==2" md-colors="{color:'warn'}">Your shuttle is on its way.</p>
-    <p ng-if="shuttle.$storage.settings.shuttleStatus==3" md-colors="{color:'warn'}">
-      As far as we can tell, you were successfully picked up. Still left in the rain?
-      <md-button class="md-raised" aria-label="New request" ng-href="#/shuttleLocations">
-          New request
-      </md-button>    
+  <md-content layout="column" layout-align="center center" ng-if="shuttle.$storage.settings.shuttleRequestedTo">
+    <p layout-padding>
+      You have requested a shuttle at <b>{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).name}}</b>.
+      <span ng-if="shuttle.$storage.settings.shuttleStatus==2" md-colors="{color:'warn'}">Your shuttle is on its way.</span>
+      <span ng-if="shuttle.$storage.settings.shuttleStatus==3" md-colors="{color:'warn'}">As far as we can tell, you were successfully picked up. Still left in the rain? Just need another one?</span>
     </p>
-
-    <md-button class="md-raised" aria-label="Cancel request" ng-click="shuttle.cancelShuttle()">
+  
+    <md-button class="md-raised" aria-label="New request" ng-href="#/shuttleLocations" ng-if="shuttle.$storage.settings.shuttleStatus==3">
+          New request
+    </md-button>  
+    <md-button class="md-raised" aria-label="Cancel request" ng-click="shuttle.cancelShuttle()" ng-if="shuttle.$storage.settings.shuttleStatus<2&&false">
         Cancel request
     </md-button>
+    
   </md-content>
 </md-content>

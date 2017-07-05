@@ -1,19 +1,34 @@
-<md-toolbar flex>
-  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-    <md-button class="md-icon-button" aria-label="Menu" ng-click="main.toggle()">
-      <md-icon>menu</md-icon>
-    </md-button>
-    <p>{{ main.title }}</p>
-    <div style="width: 40px; height: 40px;"></div>
-  </div>
-</md-toolbar>
-
-<md-content>
-  <md-list flex>
-    <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-      <md-icon ng-if="view.icon.indexOf('/') != -1" md-svg-src="{{view.icon.indexOf('/') != -1 ? view.icon : ''}}"></md-icon>
-      <md-icon ng-if="view.icon.indexOf('/') == -1">{{view.icon}}</md-icon>
-      <p>{{view.title}}</p>
-    </md-list-item>
-  </md-list>
+<md-content layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" ng-href="#/main">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p>{{ news.title }}</p>
+    </div>
+  </md-toolbar>
+  
+  <md-content>
+    <md-list flex>
+      <md-list-item>
+        <md-icon>feedback</md-icon>
+        <p>Enable Push Notifications</p>
+        <md-switch class="md-secondary" ng-model="news.$storage.settings.pushNews" ng-change="news.subscribe()"></md-switch>
+      </md-list-item>
+      <md-list-item class="md-3-line md-long-text" ng-if="news.lastNotification && news.lastNotification.notification.title == news.$storage.news[0].title">          
+        <div class="md-list-item-text">
+          <h3>{{ news.lastNotification.notification.title }}</h3>
+          <p>{{news.lastNotification.notification.body}}</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-3-line md-long-text" ng-repeat="message in news.$storage.news">          
+        <div class="md-list-item-text">
+          <h3>{{ message.title }}</h3>
+          <p>{{message.body}}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+    <p ng-if="!news.$storage.news" class="empty-note">There are no news yet</p>
+  </md-content>
+      
 </md-content>

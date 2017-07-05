@@ -11,6 +11,7 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
       $http({method: 'GET',url: 'https://ebs.api.nubenum.de/v1/shuttle.php?do=request&location='+locationId+'&fcmt='+shared.getUniqueToken()})
       .then(function successCallback(response) {
         ctrl.$storage.settings.shuttleRequestedTo = locationId;
+        ctrl.$storage.settings.shuttleStatus = response.data.status;
         $state.transitionTo('shuttle');
       }, function errorCallback(response) {
         $mdToast.show(
