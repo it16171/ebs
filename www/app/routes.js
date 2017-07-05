@@ -69,5 +69,12 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controllerAs: "shuttleLocations"
     });
 
+     $stateProvider.state("impressions", {
+        url: "/impressions",
+        templateUrl: "app/components/impressions.html",
+        title: "Impressions",
+        controller: "ImpressionsController",
+        controllerAs: "impressions"
+    })
 
 }]);

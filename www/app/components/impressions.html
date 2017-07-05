@@ -1,0 +1,27 @@
+<md-content layout="column" layout-fill>
+  <md-toolbar class="md-whiteframe-4dp">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" ng-href="#/main">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p>{{ impressions.title }}</p>
+    </div>
+  </md-toolbar>
+
+  <md-content>
+
+    <md-grid-list
+        md-cols-gt-md="12" md-cols="3" md-cols-md="8"
+        md-row-height="1:1" 
+        md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+      <md-grid-tile
+          ng-repeat="a in range(impressions.$storage.data.impressionsNum) track by $index"
+          ng-href=""
+          md-colspan="1" md-rowspan="1">
+          <img ng-src="https://ebs.api.nubenum.de/res/thumb/{{impressions.$storage.data.impressionsNum-$index-1}}.png">
+      </md-grid-tile>
+    </md-grid-list>
+    <p ng-if="!impressions.$storage.data.impressionsNum" class="empty-note">Soon, you will be able to view photos of the symposium here</p>
+
+  </md-content>  
+</md-content>

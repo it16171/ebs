@@ -12,7 +12,8 @@ angular.module("ngapp").controller("MainController", function(shared, $state, $s
         {id: 'speakers', title: 'Speakers', icon: 'people'},
         {id: 'partners', title: 'Partners', icon: 'business'},
         {id: 'shuttle', title: 'Shuttle', icon: 'directions_bus'},
-        {id: 'news', title: 'News', icon: 'feedback'}
+        {id: 'news', title: 'News', icon: 'feedback'},
+        {id: 'impressions', title: 'Impressions', icon: 'photo_camera'}
     ];
 
 

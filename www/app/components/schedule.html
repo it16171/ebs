@@ -28,7 +28,7 @@
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
+              <md-button ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
                 <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
               </md-button>
             </md-card-actions>

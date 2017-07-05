@@ -10,7 +10,7 @@
   </md-toolbar>
   <md-content class="card-bg">
     <div flex-xs flex-gt-xs="50" layout="column">
-        <md-card ng-repeat="speaker in speakers.speakers | filter: speakers.speakerId">
+        <md-card ng-repeat="speaker in speakers.$storage.data.speakers | filter: speakers.speakerId">
           <img ng-src="img/speakers/{{speaker.id}}.jpg" class="md-card-image">
           <md-card-title>
             <md-card-title-text>

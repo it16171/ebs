@@ -1,22 +1,24 @@
-<md-toolbar flex class="md-whiteframe-4dp">
-  <div><img class="" src="img/logo_big.png" style="margin: 16px auto;display:block;width:90%;max-width:500px;"></div>
- 
-</md-toolbar>
-
-<md-content>
-  <p layout-padding ng-if="main.isUpdateRequired()" md-colors="{color:'warn'}">Apparently, the app is outdated. Please update via your app store.</p>
-  <md-list flex>
-    <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-      <md-icon>{{view.icon}}</md-icon>
-      <p>{{view.title}}</p>
-    </md-list-item>
-    <md-list-item ng-href="https://www.facebook.com/ebs.symposium/">
-      <md-icon md-svg-src="img/fb.svg"></md-icon>
-      <p>Facebook</p>
-    </md-list-item>
-    <md-list-item ng-href="#/about">
-      <md-icon>info_outline</md-icon>
-      <p>About</p>
-    </md-list-item>
-  </md-list>
+<md-content layout="column" layout-fill>
+  <md-toolbar class="md-whiteframe-4dp">
+    <div><img class="" src="img/logo_big.png" style="margin: 16px auto;display:block;width:90%;max-width:500px;"></div>
+  </md-toolbar>
+  
+  <md-content>
+    <p layout-padding ng-if="main.isUpdateRequired()" md-colors="{color:'warn'}">Apparently, the app is outdated. Please update via your app store.</p>
+    <md-list flex>
+      <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
+        <md-icon>{{view.icon}}</md-icon>
+        <p>{{view.title}}</p>
+      </md-list-item>
+      <md-list-item ng-href="https://www.facebook.com/ebs.symposium/">
+        <md-icon md-svg-src="img/fb.svg"></md-icon>
+        <p>Facebook</p>
+      </md-list-item>
+      <md-list-item ng-href="#/about">
+        <md-icon>info_outline</md-icon>
+        <p>About</p>
+      </md-list-item>
+    </md-list>
+  </md-content>
+      
 </md-content>

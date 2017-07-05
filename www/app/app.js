@@ -15,6 +15,10 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     window.FirebasePlugin.hasPermission(function(data){
         console.log(data.isEnabled);
         alert(data.isEnabled);
+        if (data.isEnabled && $localStorage.settings.pushNews == undefined) {
+            $localStorage.settings.pushNews = true;
+             window.FirebasePlugin.subscribe("news");
+        }
     }); 
 
     window.FirebasePlugin.onTokenRefresh(function(token) {
@@ -22,11 +26,6 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
         console.log(token);
         $localStorage.settings.fcmt = token;
         alert(token);
-
-        if ($localStorage.settings.pushNews == undefined) {
-            $localStorage.settings.pushNews = true;
-             window.FirebasePlugin.subscribe("news");
-        }
     }, function(error) {
       alert(error);
         console.error(error);
