@@ -3,7 +3,7 @@
 angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "ngMap" ])
 // ngTouch is No Longer Supported by Angular-Material
 
-.run(function(shared, $rootScope, $cordovaDevice, $cordovaStatusbar, $localStorage, $state){
+.run(function(shared, $rootScope, $cordovaDevice, $cordovaStatusbar, $localStorage, $state, $transitions){
 
   document.addEventListener("deviceready", function () {
     $cordovaStatusbar.overlaysWebView(false);
@@ -42,6 +42,11 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     });
     alert('yay2');
   }, false);
+
+  $transitions.onStart({ }, function(trans) {
+      console.log('nav');
+      shared.updateData();
+  });
     
 })
 

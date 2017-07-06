@@ -13,15 +13,29 @@
     <md-grid-list
         md-cols-gt-md="12" md-cols="3" md-cols-md="8"
         md-row-height="1:1" 
-        md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+        md-gutter="4px">
       <md-grid-tile
-          ng-repeat="a in range(impressions.$storage.data.impressionsNum) track by $index"
+          ng-repeat="a in impressions.range(impressions.impressionsNum) track by $index"
           ng-href=""
-          md-colspan="1" md-rowspan="1">
-          <img ng-src="https://ebs.api.nubenum.de/res/thumb/{{impressions.$storage.data.impressionsNum-$index-1}}.png">
+          md-colspan="1" md-rowspan="1"
+          ng-click="impressions.showPhoto($event, impressions.impressionsNum-$index-1)">
+          <img ng-src="https://ebs.api.nubenum.de/res/impressions/thumbs/{{impressions.impressionsNum-$index-1}}.jpg" style="width:100%;">
       </md-grid-tile>
     </md-grid-list>
-    <p ng-if="!impressions.$storage.data.impressionsNum" class="empty-note">Soon, you will be able to view photos of the symposium here</p>
+    <p ng-if="!impressions.impressionsNum" class="empty-note">Soon, you will be able to view photos of the symposium here</p>
 
+    <div style="visibility: hidden">
+      <div class="md-dialog-container" id="projector">
+        <md-dialog>
+          <img ng-if="impressions.selectedPhoto != -1" ng-src="https://ebs.api.nubenum.de/res/impressions/full/{{impressions.selectedPhoto}}.jpg" style="width:500px;">
+          <md-dialog-actions layout="row">          
+            <span flex></span>
+            <md-button ng-click="$mdDialog.hide()">
+              Close
+            </md-button>
+          </md-dialog-actions>
+        </md-dialog>
+      </div>
+    </div>
   </md-content>  
 </md-content>

@@ -7,7 +7,8 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
     if(!this.$storage.settings) this.$storage.settings = {};
 
     this.lastNotification = null;
-    this.apiSrv = 'http://ebs.api.nubenum.de'
+    this.lastDataUpdate = 0;
+    this.apiSrv = 'http://proxy.nubenum.de/ebs.api.nubenum.de'
     this.updateRequired = false;
     this.defaultData = {
         "meta" : {"ts" : 100, "appv" : 1, "apiv": 1},
@@ -45,16 +46,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
    
     if (!ctrl.isCurrentData(this.$storage.data)) {
         this.$storage.data = this.defaultData;
-    }
-    
-    $http.get(this.apiSrv+'/v1/data.json?appv='+ctrl.defaultData.meta.appv)
-    .then(function(response) {
-console.log(response.data, ctrl.$storage.data);
-        if (ctrl.isCurrentData(response.data)) {
-            ctrl.$storage.data = response.data;
-            console.log(ctrl.$storage.data);
-        }
-    });  
+    } 
 
     this.getUniqueToken = function () {
         //TODO gen token if fcmt not set
@@ -63,6 +55,24 @@ console.log(response.data, ctrl.$storage.data);
             ctrl.$storage.settings.fcmt = "substitute-"+d.getTime();
         }
         return ctrl.$storage.settings.fcmt;
+    }
+
+    this.updateData = function() {
+        var d = new Date();
+        if (d.getTime()-ctrl.lastDataUpdate < 1000000) return;
+
+        $http({method: 'GET',url: this.apiSrv+'/v1/data.json?appv='+ctrl.defaultData.meta.appv})
+        .then(function successCallback(response) {
+            if (ctrl.isCurrentData(response.data)) {
+                ctrl.$storage.data = response.data;
+                console.log('data updated');
+            }
+            ctrl.lastDataUpdate = d.getTime();
+        }, function errorCallback(response) {
+            console.log('no conn');
+        });     
+
+        
     }
 
     
