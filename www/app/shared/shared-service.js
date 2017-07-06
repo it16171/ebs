@@ -47,7 +47,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         this.$storage.data = this.defaultData;
     }
     
-    $http.get(this.apiSrv+'v1/data.json?appv='+ctrl.defaultData.meta.appv)
+    $http.get(this.apiSrv+'/v1/data.json?appv='+ctrl.defaultData.meta.appv)
     .then(function(response) {
 console.log(response.data, ctrl.$storage.data);
         if (ctrl.isCurrentData(response.data)) {
