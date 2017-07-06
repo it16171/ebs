@@ -7,7 +7,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
     if(!this.$storage.settings) this.$storage.settings = {};
 
     this.lastNotification = null;
-    
+    this.apiSrv = 'http://ebs.api.nubenum.de'
     this.updateRequired = false;
     this.defaultData = {
         "meta" : {"ts" : 100, "appv" : 1, "apiv": 1},
@@ -47,7 +47,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         this.$storage.data = this.defaultData;
     }
     
-    $http.get('https://ebs.api.nubenum.de/v1/data.json?appv='+ctrl.defaultData.meta.appv)
+    $http.get(this.apiSrv+'v1/data.json?appv='+ctrl.defaultData.meta.appv)
     .then(function(response) {
 console.log(response.data, ctrl.$storage.data);
         if (ctrl.isCurrentData(response.data)) {
