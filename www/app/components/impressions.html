@@ -12,7 +12,7 @@
   <md-content>
 
     <md-grid-list
-        md-cols-gt-md="12" md-cols="3" md-cols-md="8"
+        md-cols="3" md-cols-gt-xs="5" md-cols-gt-sm="7" md-cols-gt-md="9"
         md-row-height="1:1" 
         md-gutter="4px">
       <md-grid-tile
@@ -27,7 +27,7 @@
     <div style="visibility: hidden">
       <div class="md-dialog-container" id="projector">
         <md-dialog layout="column" layout-align="center center"> 
-          <md-dialog-content><img ng-if="impressions.selectedPhoto != -1" ng-src="https://ebs.api.nubenum.de/res/impressions/full/{{impressions.selectedPhoto}}.jpg" style="max-width:100%;max-height:100%"></md-dialog-content>
+          <md-dialog-content><img ng-if="impressions.selectedPhoto != -1" ng-src="https://ebs.api.nubenum.de/res/impressions/full/{{impressions.selectedPhoto}}.jpg" style="width:100%"></md-dialog-content>
           <md-dialog-actions layout="row">          
             <span flex></span>
             <md-button ng-click="share()" class="icon-text"><md-icon>share</md-icon> Share</md-button>            

@@ -47,3 +47,8 @@ md-tabs-wrapper {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.max-width {
+    max-width: 600px;
+    margin: 0 auto;
+}
