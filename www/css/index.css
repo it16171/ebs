@@ -41,3 +41,9 @@ md-tabs-wrapper {
     margin-top: -3px;
     margin-right: 4px;
 }
+
+.nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,7 +1,7 @@
 <md-content layout="column" layout-fill class="card-bg">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" onclick="history.back();">
+      <md-button class="md-icon-button" onclick="history.back()">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p flex>{{ schedule.title }}</p>
@@ -23,12 +23,12 @@
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media">
-                  <a ng-href="#/speakers/{{session.speakerId}}"><img ng-src="img/speakers/{{session.speakerId}}.jpg" class="md-card-image"></a>
+                  <img ng-src="img/speakers/{{session.speakerId}}.jpg" ng-click="schedule.showSpeaker($event, schedule.getSpeakerById(session.speakerId))" class="md-card-image">
                 </div>
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button class="icon-text" ng-click="schedule.rateSession($event, session)" ng-if="schedule.s.ratedSessions.indexOf(session.id) == -1">
+              <md-button class="icon-text" ng-click="schedule.rateSession($event, session)" ng-if="!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1">
                 <md-icon>insert_chart</md-icon> Rate speech
               </md-button>
               <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">

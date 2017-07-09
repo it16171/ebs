@@ -56,7 +56,6 @@ angular.module("ngapp").controller("ImpressionsController", function(shared, $st
       $http({method: 'GET',url: shared.apiSrv+'/v1/impressions.json'})
       .then(function successCallback(response) {
         ctrl.impressionsNum = response.data.impressionsNum;
-        console.log(ctrl.range(ctrl.impressionsNum));
       }, function errorCallback(response) {
         $mdToast.show(
           $mdToast.simple()

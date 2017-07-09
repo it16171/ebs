@@ -1,7 +1,7 @@
 <md-content layout="column" layout-fill>
   <md-toolbar class="md-whiteframe-4dp">
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" onclick="history.back();">
+      <md-button class="md-icon-button" onclick="history.back()">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p>{{ speakers.title }}</p>
@@ -9,19 +9,18 @@
     </div>
   </md-toolbar>
   <md-content class="card-bg">
-    <div flex-xs flex-gt-xs="50" layout="column">
-        <md-card ng-repeat="speaker in speakers.$storage.data.speakers | filter: speakers.speakerId">
-          <img ng-src="img/speakers/{{speaker.id}}.jpg" class="md-card-image">
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{speaker.name}}</span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-card-content>
-            <p>{{speaker.desc}}</p>
-          </md-card-content>
-        </md-card>
+
+    <div style="padding:4px;" layout="row" layout-wrap>
+        <div flex="50"  ng-repeat="speaker in speakers.$storage.data.speakers">
+            <md-card style="margin:4px" ng-click="speakers.showSpeaker($vent, speaker)">
+              <img ng-src="img/speakers/{{speaker.id}}.jpg" class="md-card-image">
+              <md-card-content class="nowrap md-padding">
+              {{speaker.name}}
+              </md-card-content>
+            </md-card>
+        </div>
     </div>
+
   </md-content> 
   
 </md-content>

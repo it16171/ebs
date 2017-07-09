@@ -20,14 +20,6 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controllerAs: "schedule"
     });
 
-    $stateProvider.state("speakersdetail", {
-        url: "/speakers/{speakerId}",
-        templateUrl: "app/components/speakers.html",
-        title: "Speakers",
-        controller: "SpeakersController",
-        controllerAs: "speakers"
-    });
-
     $stateProvider.state("speakers", {
         url: "/speakers",
         templateUrl: "app/components/speakers.html",

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdDialog, $mdComponentRegistry, $http){
+angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdDialog, $mdComponentRegistry, $http, $location){
 
     var ctrl = this;
 
@@ -24,14 +24,12 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         return shared.getObjectById(speakerId, ctrl.$storage.data.speakers);
     }
 
-    console.log(this.s.ratedSessions);
-
     this.rateSession = function($event, session) {
         $mdDialog.show({
             locals: {sessionToRate: session},
             contentElement: '#rating',
             parent: angular.element(document.body),
-            controller: DialogController,
+            controller: RateDialogController,
             targetEvent: $event,
             clickOutsideToClose: true,
             fullscreen: false,
@@ -40,7 +38,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         });        
     }
 
-    function DialogController($scope, $mdDialog, sessionToRate) {
+    function RateDialogController($scope, $mdDialog, sessionToRate) {
         $scope.session = sessionToRate;
         $scope.starRating = 0;
 
@@ -64,6 +62,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
             $http({method: 'GET',url: shared.apiSrv+'/v1/rate.php?do=rate&session='+$scope.session.id+'&rating='+$scope.starRating+'&fcmt='+shared.getUniqueToken()})
             .then(function successCallback(response) {
+                if (!ctrl.s.ratedSessions) ctrl.s.ratedSessions = [];
                 ctrl.s.ratedSessions.push($scope.session.id);
                 $scope.hide();
             }, function errorCallback(response) {
@@ -74,6 +73,27 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
                 );
             });       
         }
+    }
+
+
+    this.showSpeaker = function($event, mySpeaker) {
+        //$location.hash("dialog");
+        $mdDialog.show({
+            locals: {speaker: mySpeaker},
+            controller: SpeakerDialogController,
+            templateUrl: 'app/components/speakers.detail.html',
+            parent: angular.element(document.body),
+            targetEvent: $event,
+            clickOutsideToClose:true,
+            fullscreen: false
+        });     
+    }
+    function SpeakerDialogController($scope, $mdDialog, speaker) {
+        
+        $scope.speaker = speaker;
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
     }
     
 });

@@ -1,22 +1,23 @@
 <md-content layout="column" layout-fill>
   <md-toolbar class="md-whiteframe-4dp">
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" onclick="history.back();">
+      <md-button class="md-icon-button" onclick="history.back()">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p>{{ partners.title }}</p>
     </div>
   </md-toolbar>
-  <md-content layout="row" layout-wrap class="card-bg">
-   
-      <div flex="50" ng-repeat="partner in partners.$storage.data.partners">
-        <md-card>
-          <img ng-src="img/partners/{{partner.id}}.jpg" class="md-card-image">
-        </md-card>
-      </div>
+  <md-content class="card-bg">
 
-  </md-content>
+    <div style="padding:4px;" layout="row" layout-wrap>
+        <div flex="50"  ng-repeat="partner in partners.$storage.data.partners">
+            <md-card style="margin:4px">
+              <img ng-src="img/partners/{{partner.id}}.jpg" class="md-card-image">
+            </md-card>
+        </div>
+    </div>
 
-  
+  </md-content> 
+ 
 </md-content>
 
