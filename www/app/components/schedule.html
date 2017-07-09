@@ -11,34 +11,9 @@
     </div>
   </md-toolbar>
   <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
-      <md-tab label="Thu 28th" layout-fill>
-        <md-content class="card-bg" layout-fill>
-          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:28}:true | filter:schedule.personalFilter)">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">{{session.title}}</span>
-                <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
-                <span class="md-subhead">{{session.time}}</span>
-                <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
-              </md-card-title-text>
-              <md-card-title-media>
-                <div class="md-media-sm card-media">
-                  <a ng-href="#/speakers/{{session.speakerId}}"><img ng-src="img/speakers/{{session.speakerId}}.jpg" class="md-card-image"></a>
-                </div>
-              </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
-                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
-              </md-button>
-            </md-card-actions>
-          </md-card>
-          <p ng-if="!filtered.length" class="empty-note">Please star the events you're attending in order to display them here</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="Fri 29th">
+      <md-tab ng-repeat="day in schedule.days" label="{{day.title}}">
         <md-content class="card-bg">
-          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:29}:true | filter:schedule.personalFilter)">
+          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:day.id}:true | filter:schedule.personalFilter)">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{session.title}}</span>
@@ -53,33 +28,11 @@
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
-                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
+              <md-button class="icon-text" ng-click="schedule.rateSession($event, session)" ng-if="schedule.s.ratedSessions.indexOf(session.id) == -1">
+                <md-icon>insert_chart</md-icon> Rate speech
               </md-button>
-            </md-card-actions>
-          </md-card>
-          <p ng-if="!filtered.length" class="empty-note">Please star the events you're attending in order to display them here</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="Sat 30th">
-        <md-content class="card-bg">
-          <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:30}:true | filter:schedule.personalFilter)">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">{{session.title}}</span>
-                <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
-                <span class="md-subhead">{{session.time}}</span>
-                <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
-              </md-card-title-text>
-              <md-card-title-media>
-                <div class="md-media-sm card-media">
-                  <a ng-href="#/speakers/{{session.speakerId}}"><img ng-src="img/speakers/{{session.speakerId}}.jpg" class="md-card-image"></a>
-                </div>
-              </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-icon-button" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
-                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon>
+              <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
+                <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon> My schedule
               </md-button>
             </md-card-actions>
           </md-card>
@@ -87,4 +40,22 @@
         </md-content>
       </md-tab>
   </md-tabs>
+
+  <div style="visibility: hidden">
+      <div class="md-dialog-container" id="rating">
+        <md-dialog layout="column" layout-align="center center"> 
+          <md-dialog-content layout-padding>
+              <h4>Rate {{session.title}}</h4>
+              <md-button class="md-icon-button" ng-click="setStarRating($index+1)" ng-repeat="a in range(5) track by $index">
+                <md-icon ng-class="($index < starRating) ? 'md-accent' : ''">{{($index < starRating) ? 'star' : 'star_border'}}</md-icon>
+              </md-button>
+          </md-dialog-content>
+          <md-dialog-actions layout="row">          
+            <span flex></span>
+            <md-button ng-click="send()" class="icon-text" ng-disabled="starRating == 0"><md-icon>send</md-icon> Send</md-button>            
+            <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>
+          </md-dialog-actions>
+        </md-dialog>
+      </div>
+    </div>
 </md-content>
