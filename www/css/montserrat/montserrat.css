@@ -2,7 +2,6 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  src: url(MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Montserrat'),
        local('Montserrat-Regular'),
        url(Montserrat-Regular.woff2) format('woff2'),

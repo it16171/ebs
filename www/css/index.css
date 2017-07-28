@@ -14,6 +14,11 @@ body {
     width:100%;
 }
 
+h1,h2,h3,h4,h5,h6, md-toolbar p {
+    font-family: Raleway, Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 .empty-note {
     color: #707070;
     text-align: center;
@@ -39,7 +44,7 @@ md-tabs-wrapper {
 
 .icon-text md-icon {
     margin-top: -3px;
-    margin-right: 4px;
+    margin-left: -4px;
 }
 
 .nowrap {
@@ -51,4 +56,9 @@ md-tabs-wrapper {
 .max-width {
     max-width: 600px;
     margin: 0 auto;
+}
+
+.map-marker {
+    color: #b20702;
+    font-size:36px !important;
 }

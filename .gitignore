@@ -10,5 +10,6 @@ bin/*
 plugins/*
 platforms/*
 .directory
+_server
 
 # End of https://www.gitignore.io/api/apachecordova

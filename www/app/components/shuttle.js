@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("ShuttleController", function(shared, NgMap, $state, $scope, $localStorage, $http, $timeout, $mdToast, $mdComponentRegistry){
+angular.module("ngapp").controller("ShuttleController", function(shared, $state, $scope, $localStorage, $http, $timeout, $mdToast, $mdComponentRegistry){
 
     var ctrl = this;
     this.$storage = $localStorage;
