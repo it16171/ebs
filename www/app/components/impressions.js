@@ -33,7 +33,7 @@ angular.module("ngapp").controller("ImpressionsController", function(shared, $st
 
         $scope.cancel = function () {
             $mdDialog.cancel();
-        };
+        }; 
 
         $scope.share = function () {
             var options = {
@@ -46,8 +46,9 @@ angular.module("ngapp").controller("ImpressionsController", function(shared, $st
 
             var onError = function(msg) {
                 
+                
             }
-
+            console.log('sharing');
             window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
         }
     }

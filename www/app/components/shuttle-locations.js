@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("ShuttleLocationsController", function(shared, $state, $scope, $localStorage, $mdComponentRegistry, $mdToast, $http){
+angular.module("ngapp").controller("ShuttleLocationsController", function(shared, $state, $scope, $localStorage, $mdComponentRegistry, $mdToast, $http, $compile){
 
     var ctrl = this;
     this.$storage = $localStorage;
@@ -31,7 +31,7 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
     }];   
     var markers = this.$storage.data.pickupLocations;
     for(var i = 0;i<markers.length;i++) {
-     // var compiled = $compile('<md-button ng-click="shuttleLocations.requestShuttle(\''+markers[i].id+'\')">Request here</md-button>')(this);
+      var compiled = $compile('<md-button onclick="requestShuttleProxy(\''+markers[i].id+'\')">Request here</md-button>')($scope);
       this.glMarkers.push({
         coordinates: [markers[i].lon,markers[i].lat],
         element: createElement(),
@@ -49,7 +49,7 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
     }
  
     this.requestShuttle = function (locationId) {
-        
+    
       $http({method: 'GET',url: shared.apiSrv+'/v1/shuttle.php?do=request&location='+locationId+'&fcmt='+shared.getUniqueToken()})
       .then(function successCallback(response) {
         ctrl.$storage.settings.shuttleRequestedTo = locationId;
@@ -63,6 +63,7 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
         );
       });       
     }
+
 
   
 
