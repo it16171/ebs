@@ -17,9 +17,17 @@
             <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:day.id}:true | filter:schedule.personalFilter)">
               <md-card-title>
                 <md-card-title-text>
-                  <span class="md-headline">{{session.title}}</span>
+                  <span class="md-subhead" style="text-transform:uppercase;">{{session.type}}</span>
+                  <h3>{{session.title}}</h3>
                   <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
-                  <span class="md-subhead">{{session.time}}</span>
+                  <span ng-if="session.type != 'interview'"><md-icon class="md-18">schedule</md-icon> {{session.time}} <md-icon class="md-18">room</md-icon> {{session.room}}</span>
+                  <div ng-if="session.type == 'interview'" >
+                    <md-icon class="md-18">schedule</md-icon>
+                    <md-select ng-model="selectedTime" placeholder="Time" style="margin-right:8px;display:inline-block;">
+                      <md-option ng-repeat="time in session.time" ng-value="time">{{time}}</md-option>
+                    </md-select>
+                    <md-icon class="md-18">room</md-icon> {{session.room}}
+                  </div>
                   <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
                 </md-card-title-text>
                 <md-card-title-media>
@@ -30,7 +38,7 @@
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
                 <md-button class="icon-text" ng-click="schedule.rateSession($event, session)" ng-if="!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1">
-                  <md-icon>insert_chart</md-icon> Rate speech
+                  <md-icon>insert_chart</md-icon> Rate {{session.type}}
                 </md-button>
                 <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
                   <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon> My schedule
@@ -47,7 +55,7 @@
       <div class="md-dialog-container" id="rating">
         <md-dialog layout="column" layout-align="center center"> 
           <md-dialog-content layout-padding>
-              <h4>Rate {{session.title}}</h4>
+              <h4>Rate "{{session.title}}"</h4>
               <md-button class="md-icon-button" ng-click="setStarRating($index+1)" ng-repeat="a in range(5) track by $index">
                 <md-icon ng-class="($index < starRating) ? 'md-accent' : ''">{{($index < starRating) ? 'star' : 'star_border'}}</md-icon>
               </md-button>

@@ -7,34 +7,34 @@
       <p>{{ impressions.title }}</p>
     </div>
   </md-toolbar>
-  <md-progress-linear md-mode="indeterminate" ng-if="!impressions.impressionsNum"></md-progress-linear>
+  <md-progress-linear md-mode="indeterminate" ng-if="!impressions.photoList"></md-progress-linear>
 
   <md-content>
+
+    <div layout="row" layout-align="center">
+      <md-select ng-model="selectedDay" placeholder="Day">
+        <md-option ng-repeat="(day, data) in impressions.photoList" ng-value="day">{{day}}</md-option>
+      </md-select>
+
+      <md-select  ng-model="selectedTime" placeholder="Time">
+        <md-option ng-repeat="(time, data) in impressions.photoList[selectedDay]" ng-value="time">{{time}}</md-option>
+      </md-select>
+    </div>
 
     <md-grid-list
         md-cols="3" md-cols-gt-xs="5" md-cols-gt-sm="7" md-cols-gt-md="9"
         md-row-height="1:1" 
         md-gutter="4px">
       <md-grid-tile
-          ng-repeat="a in impressions.range(impressions.impressionsNum) track by $index"
+          ng-repeat="photoId in impressions.photoList[selectedDay][impressions.photoList[selectedDay][selectedTime] ? selectedTime : 'Other']"
           md-colspan="1" md-rowspan="1"
-          ng-click="impressions.showPhoto($event, impressions.impressionsNum-$index-1)">
-          <img ng-src="https://ebs.api.nubenum.de/res/impressions/thumbs/{{impressions.impressionsNum-$index-1}}.jpg" style="width:100%;">
+          ng-click="impressions.showPhoto($event, photoId)">
+          <img ng-src="https://ebs.api.nubenum.de/res/impressions/thumbs/{{photoId}}.jpg" style="width:100%;">
       </md-grid-tile>
     </md-grid-list>
-    <p ng-if="!impressions.impressionsNum" class="empty-note">Soon, you will be able to view photos of the symposium here</p>
-
-    <div style="visibility: hidden">
-      <div class="md-dialog-container" id="projector">
-        <md-dialog layout="column" layout-align="center center"> 
-          <md-dialog-content><img ng-if="impressions.selectedPhoto != -1" ng-src="https://ebs.api.nubenum.de/res/impressions/full/{{impressions.selectedPhoto}}.jpg" style="width:100%"></md-dialog-content>
-          <md-dialog-actions layout="row">          
-            <span flex></span>
-            <md-button ng-click="share()" class="icon-text"><md-icon>share</md-icon> Share</md-button>            
-            <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Close</md-button>
-          </md-dialog-actions>
-        </md-dialog>
-      </div>
-    </div>
+    <p ng-if="!impressions.photoList[selectedDay][impressions.photoList[selectedDay][selectedTime] ? selectedTime : 'Other']" class="empty-note">
+      <span ng-if="selectedDay && impressions.photoList[selectedDay].length == 0">There are no photos yet for the selected timespan. Please check back soon.</span>
+      <span ng-if="!(selectedDay && impressions.photoList[selectedDay].length == 0)">Please select the day and time when you were at the photo wall.</span>
+    </p>
   </md-content>  
 </md-content>

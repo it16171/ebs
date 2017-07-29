@@ -7,6 +7,15 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
     
 
     mapboxgl.accessToken = 'none';
+    this.glControls = {
+      navigation: {
+        enabled: true,
+        options: {
+          position: 'top-right'
+        }
+      }
+    };
+
     function createElement (isCenter) {
       var element = document.createElement('div');
       element.className = "material-icons map-marker";

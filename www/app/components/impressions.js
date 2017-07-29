@@ -3,32 +3,25 @@
 angular.module("ngapp").controller("ImpressionsController", function(shared, $state, $scope, $http, $mdToast, $mdDialog, $mdComponentRegistry){
 
     var ctrl = this;
-    this.impressionsNum = 0;
-    this.selectedPhoto = -1;
+    this.photoList;
 
-    this.range = function(n) {
-        return new Array(n);
-    };
+    this.showPhoto = function ($event, myPhoto) {
 
-    this.showPhoto = function ($event, myId) {
-
-        ctrl.selectedPhoto = myId;       
         $mdDialog.show({
-            contentElement: '#projector',
-            parent: angular.element(document.body),
+            locals: {photo: myPhoto},            
             controller: DialogController,
+            templateUrl: 'app/components/impressions.detail.html',
+            parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
-            fullscreen: false,
-            scope: $scope,
-            preserveScope: true
+            fullscreen: false
         });        
     }
 
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $mdDialog, photo) {
+        $scope.photo = photo;
         $scope.hide = function () {
             $mdDialog.hide();
-            ctrl.selectedPhoto = -1;
         };
 
         $scope.cancel = function () {
@@ -37,7 +30,7 @@ angular.module("ngapp").controller("ImpressionsController", function(shared, $st
 
         $scope.share = function () {
             var options = {
-                files: ['https://ebs.api.nubenum.de/res/impressions/full/'+ctrl.selectedPhoto+'.jpg']
+                files: ['https://ebs.api.nubenum.de/res/impressions/full/'+$scope.photo+'.jpg']
             }
 
             var onSuccess = function(result) {
@@ -56,7 +49,7 @@ angular.module("ngapp").controller("ImpressionsController", function(shared, $st
     this.getImpressions = function () {
       $http({method: 'GET',url: shared.apiSrv+'/v1/impressions.json'})
       .then(function successCallback(response) {
-        ctrl.impressionsNum = response.data.impressionsNum;
+        ctrl.photoList = response.data;
       }, function errorCallback(response) {
         $mdToast.show(
           $mdToast.simple()

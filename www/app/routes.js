@@ -7,7 +7,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("main", {
         url: "/main",
         templateUrl: "app/components/main.html",
-        title: "EBS Symposium 2017",
+        title: "28th EBS Symposium",
         controller: "MainController",
         controllerAs: "main"
     });
@@ -31,7 +31,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("partners", {
         url: "/partners",
         templateUrl: "app/components/partners.html",
-        title: "Partners",
+        title: "Sponsors & Partners",
         controller: "PartnersController",
         controllerAs: "partners"
     });
@@ -61,10 +61,31 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controllerAs: "shuttleLocations"
     });
 
+    $stateProvider.state("shuttle.request", {
+        url: "/shuttleRequest",
+        onEnter: ['$stateParams', '$state', '$mdDialog', '$resource', function($stateParams, $state, $mdDialog, $resource) {
+            
+            $mdDialog.show($mdDialog.confirm()
+                .title('Would you like to delete your debt?')
+                .textContent('All of the banks have agreed to forgive you your debts.')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Please do it!')
+                .cancel('Sounds like a scam'))
+            .then(function() {
+                
+            }, function() {
+                
+            });
+
+          
+        }]
+    });
+
     $stateProvider.state("impressions", {
         url: "/impressions",
         templateUrl: "app/components/impressions.html",
-        title: "Impressions",
+        title: "Photo Wall",
         controller: "ImpressionsController",
         controllerAs: "impressions"
     });

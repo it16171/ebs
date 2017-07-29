@@ -29,9 +29,8 @@ h1,h2,h3,h4,h5,h6, md-toolbar p {
     padding-left: 16px;
 }
 
-#map {
-height: 400px;
-width: 100%;
+md-card-title h3 {
+    margin-top: 0;
 }
 
 .card-bg {
@@ -58,7 +57,13 @@ md-tabs-wrapper {
     margin: 0 auto;
 }
 
-.map-marker {
+.material-icons.map-marker {
     color: #b20702;
-    font-size:36px !important;
+    font-size:36px;
+}
+
+.material-icons.md-18 { 
+    font-size: 18px; 
+    min-width: 18px;
+    margin: 0;
 }
