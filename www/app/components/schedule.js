@@ -15,6 +15,10 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         {"id":30, "title":"Sat 30th"},
     ];
 
+    var date = new Date();
+    var day = date.getDate();
+    if (day < 28 || day > 30) day = 28;  
+    this.today = day-28;
 
     this.personalFilter = function(session) {
         return !ctrl.$storage.settings.personalEventsView || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
