@@ -9,7 +9,7 @@
   </md-toolbar>
          
    
-  <md-tabs md-stretch-tabs="auto" class="md-primary" layout-fill>
+    <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
       <md-tab label="List">
         <md-tab-content>
           <md-list flex>
@@ -20,9 +20,29 @@
           </md-list>
         </md-tab-content>
       </md-tab>
-      <md-tab label="Map" layout-fill>
-        <md-tab-content layout-fill>
-          <mapboxgl gl-style="'https://osm.api.nubenum.de/styles/osm-bright/style.json'"  gl-center="{lat:50.0121135,lng:8.0504839}" gl-zoom="{value:11}" gl-markers="shuttleLocations.glMarkers" gl-controls="shuttleLocations.glControls" layout-fill></mapboxgl>  
+      <md-tab label="Map" layout="column" flex>
+        <md-tab-content layout="column" flex>
+
+
+          <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyA8saAicVtJk5Ht19mlC5GJrsqmLnADwDQ" layout-fill>
+            <ng-map center="50.0121135,8.0504839" zoom="11" layout-fill>
+
+              <marker id="{{marker.id}}" position="{{marker.lat}},{{marker.lon}}"
+                ng-repeat="marker in shuttleLocations.markers"
+                on-click="shuttleLocations.showInfo(marker)">
+              </marker>
+              <marker id="center" position="50.0121135,8.0504839" label="EBS">
+              </marker>
+
+
+              <info-window id="info">
+                <div ng-non-bindable="">
+                  <p>{{shuttleLocations.currentMarker.name}}</p>
+                  <md-button ng-click="shuttleLocations.requestShuttle(shuttleLocations.currentMarker.id)">Request here</md-button>
+                </div>
+              </info-window>
+            </ng-map>
+          </div>
          
         </md-tab-content>
       </md-tab>
