@@ -8,18 +8,19 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
 
     this.lastNotification = null;
     this.lastDataUpdate = 0;
-    this.apiSrv = 'http://proxy.nubenum.de/ebs.api.nubenum.de'
+    this.apiSrv = 'http://proxy.nubenum.de/ebs.api.nubenum.de/v1/';
+    this.testMode = false;
     this.updateRequired = false;
     this.defaultData = { 
         "meta" : {"ts" : 103, "appv" : 1, "apiv": 1},
-        "speakers" : [{"id":"auschel-roland","name":"Roland Auschel","info":"Member of Executive Board, Global Sales","hasLogo":true},{"id":"baier-moritz","name":"Moritz Baier","info":"Forbes 30 Under 30, Goldman Sachs","hasLogo":true},{"id":"boersch-marc-aurel","name":"Marc-Aurel Boersch","info":"CEO Nestle\u0301 Netherlands","hasLogo":true},{"id":"burghardt-markus","name":"Markus Burghardt","info":"German Financial Services Leader, Member of the German Management Board","hasLogo":true},{"id":"damme-niek-jan-van","name":"Niek Jan van Damme","info":"Member of Management Board","hasLogo":true},{"id":"dombret-prof-dr-andreas","name":"Prof. Dr. Andreas Dombret","info":"Member of the Executive Board","hasLogo":true},{"id":"fink-dr-wolfgang","name":"Dr. Wolfgang Fink","info":"Co-CEO Goldman Sachs Germany & Austria","hasLogo":true},{"id":"holzer-peter","name":"Peter Holzer","info":"Keynote Speaker, Author, Executive Coach","hasLogo":false},{"id":"karapandza-prof-rasa","name":"Prof. Rasa Karapandza","info":"Chaired Professor of Finance","hasLogo":true},{"id":"kopp-matthias","name":"Matthias Kopp","info":"Head Low Carbon Business and Finance Sector","hasLogo":true},{"id":"kratz-carsten","name":"Carsten Kratz","info":"Head of Management Team","hasLogo":true},{"id":"kretzberg-alena","name":"Alena Kretzberg","info":"Partner McKinsey & Company","hasLogo":true},{"id":"martin-andrea","name":"Andrea Martin","info":"CTO IBM Germany, Austria, Switzerland","hasLogo":true},{"id":"schafer-daniel","name":"Daniel Scha\u0308fer","info":"Finance Editor & Frankfurt Bureau Chief","hasLogo":true},{"id":"schellenberg-daniel","name":"Daniel Schellenberg","info":"Vice President","hasLogo":true},{"id":"schulte-dr-stefan","name":"Dr. Stefan Schulte","info":"CEO","hasLogo":true},{"id":"schwenker-prof-dr-burkhard","name":"Prof. Dr. Burkhard Schwenker","info":"Chairman of the Advisory Coucil","hasLogo":true},{"id":"steilemann-dr-markus","name":"Dr. Markus Steilemann","info":"Member of Management Board","hasLogo":true},{"id":"welbers-dr-georg","name":"Dr. Georg Welbers","info":"Member of Management Board","hasLogo":true}],
+        "speakers" : [{"id":"auschel-roland","name":"Roland Auschel","info":"Member of Executive Board, Global Sales","online":false},{"id":"baier-moritz","name":"Moritz Baier","info":"Forbes 30 Under 30, Goldman Sachs","online":false},{"id":"boersch-marc-aurel","name":"Marc-Aurel Boersch","info":"CEO Nestle\u0301 Netherlands","online":false},{"id":"burghardt-markus","name":"Markus Burghardt","info":"German Financial Services Leader, Member of the German Management Board","online":false},{"id":"damme-niek-jan-van","name":"Niek Jan van Damme","info":"Member of Management Board","online":false},{"id":"dombret-prof-dr-andreas","name":"Prof. Dr. Andreas Dombret","info":"Member of the Executive Board","online":false},{"id":"fink-dr-wolfgang","name":"Dr. Wolfgang Fink","info":"Co-CEO Goldman Sachs Germany & Austria","online":false},{"id":"holzer-peter","name":"Peter Holzer","info":"Keynote Speaker, Author, Executive Coach","online":false},{"id":"karapandza-prof-rasa","name":"Prof. Rasa Karapandza","info":"Chaired Professor of Finance","online":false},{"id":"kopp-matthias","name":"Matthias Kopp","info":"Head Low Carbon Business and Finance Sector","online":true},{"id":"kratz-carsten","name":"Carsten Kratz","info":"Head of Management Team","online":false},{"id":"kretzberg-alena","name":"Alena Kretzberg","info":"Partner McKinsey & Company","online":false},{"id":"martin-andrea","name":"Andrea Martin","info":"CTO IBM Germany, Austria, Switzerland","online":false},{"id":"schafer-daniel","name":"Daniel Scha\u0308fer","info":"Finance Editor & Frankfurt Bureau Chief","online":false},{"id":"schellenberg-daniel","name":"Daniel Schellenberg","info":"Vice President","online":false},{"id":"schulte-dr-stefan","name":"Dr. Stefan Schulte","info":"CEO","online":false},{"id":"schwenker-prof-dr-burkhard","name":"Prof. Dr. Burkhard Schwenker","info":"Chairman of the Advisory Coucil","online":false},{"id":"steilemann-dr-markus","name":"Dr. Markus Steilemann","info":"Member of Management Board","online":false},{"id":"welbers-dr-georg","name":"Dr. Georg Welbers","info":"Member of Management Board","online":false}],
         "partners" : [{"id":"4c","name":"4C"},{"id":"accenture","name":"accenture"},{"id":"bahlsen","name":"Bahlsen"},{"id":"bcg-boston-consulting-group","name":"BCG Boston Consulting Group"},{"id":"bearingpoint","name":"BearingPoint"},{"id":"capgemini-consulting","name":"Capgemini Consulting"},{"id":"citi","name":"Citi"},{"id":"commerz-real","name":"Commerz Real"},{"id":"kloeckner-co","name":"Kl\u00f6ckner &#038; Co"},{"id":"kpmg","name":"KPMG"},{"id":"mckinseycompany","name":"McKinsey&#038;Company"},{"id":"mlp","name":"MLP"},{"id":"porsche-consulting","name":"Porsche Consulting"},{"id":"pwc","name":"pwc"},{"id":"roland-berger","name":"Roland Berger"},{"id":"rothschild","name":"Rothschild"},{"id":"volkswagen-consulting","name":"Volkswagen Consulting"},{"id":"zeb","name":"zeb"}],
         "schedule" : [
-            {"type": "speech", "id": "how-to-save-the-planet", "day" : 28, "time": "10:00-11:30", "room": "Forum", "title": "How to save the planet", "speakerId": "baier-moritz", "alert": ""},
-            {"type": "interview", "id": "a-cool-interview", "day" : 28, "time": ["10:00-10:30", "10:30-11:00", "11:00-11:30"], "room": "Forum", "title": "A cool interview", "speakerId": "baier-moritz", "alert": ""},
-            {"type": "speech", "id": "a-generic-speech", "day" : 28, "time": "10:00-11:30", "room": "KEB Forum", "title": "A generic speech", "speakerId": "schafer-daniel", "alert": ""},
-            {"type": "speech", "id": "how-to-succeed-in-life", "day" : 29, "time": "10:00-11:30", "room": "Forum", "title": "How to succeed in life", "speakerId": "steilemann-dr-markus", "alert": ""},
-            {"type": "speech", "id": "what-to-do-next", "day" : 30, "time": "10:00-11:30", "room": "KEB Forum", "title": "What to do next", "speakerId": "auschel-roland", "alert": ""}
+            {"type": "speech", "id": "how-to-save-the-planet", "day" : 28, "start": ["11:45"], "duration": 30, "room": "Forum", "title": "How to save the planet", "speakerId": "baier-moritz", "alert": ""},
+            {"type": "interview", "id": "a-cool-interview", "day" : 28, "start": ["11:45", "12:00"], "duration": 20, "room": "Forum", "title": "A cool interview", "speakerId": "baier-moritz", "alert": ""},
+            {"type": "speech", "id": "a-generic-speech", "day" : 28, "start": ["11:30"], "duration": 30, "room": "KEB Forum", "title": "A generic speech", "speakerId": "schafer-daniel", "alert": ""},
+            {"type": "speech", "id": "how-to-succeed-in-life", "day" : 29, "start": ["13:00"], "duration": 30, "room": "Forum", "title": "How to succeed in life", "speakerId": "steilemann-dr-markus", "alert": ""},
+            {"type": "speech", "id": "what-to-do-next", "day" : 30, "start": ["10:00"], "duration": 60, "room": "KEB Forum", "title": "What to do next", "speakerId": "auschel-roland", "alert": ""}
         ],
         "pickupLocations" : [
             {"id": "oestrich-winkel-bhf", "lat": 50.002455, "lon" : 8.019080, "name": "Oestrich-Winkel Bhf"},
@@ -58,12 +59,13 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         return ctrl.$storage.settings.fcmt;
     }
 
-    this.updateData = function() {
+    this.updateData = function(force) {
         var d = new Date();
-        if (d.getTime()-ctrl.lastDataUpdate < 1000000) return;
-
-        $http({method: 'GET',url: this.apiSrv+'/v1/data.json?appv='+ctrl.defaultData.meta.appv})
+        if (!force && !ctrl.testMode && d.getTime()-ctrl.lastDataUpdate < 1000000) return;
+        var apiUrl =  ctrl.apiSrv+(ctrl.testMode?'test_':'')+'data.json?appv='+ctrl.defaultData.meta.appv;
+        $http({method: 'GET',url:apiUrl})
         .then(function successCallback(response) {
+            console.log('data received', apiUrl);
             if (ctrl.isCurrentData(response.data)) {
                 ctrl.$storage.data = response.data;
                 console.log('data updated');
@@ -72,7 +74,6 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         }, function errorCallback(response) {
             console.log('no conn');
         });     
-
         
     }
 

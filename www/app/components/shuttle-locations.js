@@ -59,7 +59,7 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
  
     this.requestShuttle = function (locationId) {
     
-      $http({method: 'GET',url: shared.apiSrv+'/v1/shuttle.php?do=request&location='+locationId+'&fcmt='+shared.getUniqueToken()})
+      $http({method: 'GET',url: shared.apiSrv+'shuttle.php?do=request&location='+locationId+'&fcmt='+shared.getUniqueToken()})
       .then(function successCallback(response) {
         ctrl.$storage.settings.shuttleRequestedTo = locationId;
         ctrl.$storage.settings.shuttleStatus = response.data.status;

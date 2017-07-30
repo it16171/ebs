@@ -32,10 +32,22 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     });
 
     window.FirebasePlugin.onNotificationOpen(function(notification) {
-        console.log(notification);
-        alert(JSON.stringify(notification));
+        shared.updateData(true);
         shared.lastNotification = notification;
-        $state.transitionTo('news');
+        var confirm = $mdDialog.confirm()
+          .title('New message')
+          .textContent('There are news available. Do you want to view them?')
+          .ariaLabel('News')
+          .targetEvent(ev)
+          .ok('View news')
+          .cancel('Cancel');
+
+        $mdDialog.show(confirm).then(function() {
+          $state.transitionTo('news');
+        }, function() {
+         
+        });
+        
     }, function(error) {
         alert(error);
         console.error(error);

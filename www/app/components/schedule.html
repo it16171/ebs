@@ -14,17 +14,17 @@
       <md-tab ng-repeat="day in schedule.days" label="{{day.title}}">
         <md-content class="card-bg">
           <div class="max-width">
-            <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:day.id}:true | filter:schedule.personalFilter)">
+            <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule | filter:{day:day.id}:true | filter:schedule.personalFilter) | orderBy:'start'">
               <md-card-title>
                 <md-card-title-text>
                   <span class="md-subhead" style="text-transform:uppercase;">{{session.type}}</span>
                   <h3>{{session.title}}</h3>
                   <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
-                  <span ng-if="session.type != 'interview'"><md-icon class="md-18">schedule</md-icon> {{session.time}} <md-icon class="md-18">room</md-icon> {{session.room}}</span>
+                  <span ng-if="session.type != 'interview'"><md-icon class="md-18">schedule</md-icon> {{schedule.getSessionTimeString(session.start[0],session.duration)}} <md-icon class="md-18">room</md-icon> {{session.room}}</span>
                   <div ng-if="session.type == 'interview'" >
                     <md-icon class="md-18">schedule</md-icon>
                     <md-select ng-model="selectedTime" placeholder="Time" style="margin-right:8px;display:inline-block;">
-                      <md-option ng-repeat="time in session.time" ng-value="time">{{time}}</md-option>
+                      <md-option ng-repeat="time in session.start" ng-value="time">{{schedule.getSessionTimeString(time, session.duration)}}</md-option>
                     </md-select>
                     <md-icon class="md-18">room</md-icon> {{session.room}}
                   </div>
@@ -32,7 +32,7 @@
                 </md-card-title-text>
                 <md-card-title-media>
                   <div class="md-media-sm card-media">
-                    <img ng-src="img/speakers/{{session.speakerId}}.jpg" ng-click="schedule.showSpeaker($event, schedule.getSpeakerById(session.speakerId))" class="md-card-image">
+                    <img ng-src="img/speakers/{{session.speakerId}}.jpg" ng-click="schedule.showSpeaker($event, schedule.getSpeakerById(session.speakerId))" class="md-avatar">
                   </div>
                 </md-card-title-media>
               </md-card-title>

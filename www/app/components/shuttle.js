@@ -10,7 +10,7 @@ angular.module("ngapp").controller("ShuttleController", function(shared, $state,
 
     this.cancelShuttle = function () {
         
-      $http({method: 'GET',url: shared.apiSrv+'/v1/shuttle.php?do=cancel&location='+ctrl.$storage.settings.shuttleRequestedTo+'&fcmt='+shared.getUniqueToken()})
+      $http({method: 'GET',url: shared.apiSrv+'shuttle.php?do=cancel&location='+ctrl.$storage.settings.shuttleRequestedTo+'&fcmt='+shared.getUniqueToken()})
       .then(function successCallback(response) {
         ctrl.$storage.settings.shuttleStatus = 3;
       }, function errorCallback(response) {
@@ -24,7 +24,7 @@ angular.module("ngapp").controller("ShuttleController", function(shared, $state,
 
     this.getShuttleInfo = function () {
       console.log("status update event");
-      $http({method: 'GET',url: shared.apiSrv+'/v1/shuttle.php?do=status&location='+ctrl.$storage.settings.shuttleRequestedTo+'&fcmt='+shared.getUniqueToken()})
+      $http({method: 'GET',url: shared.apiSrv+'shuttle.php?do=status&location='+ctrl.$storage.settings.shuttleRequestedTo+'&fcmt='+shared.getUniqueToken()})
       .then(function successCallback(response) {
         if (!response.data.error) {
             ctrl.$storage.settings.shuttleStatus = response.data.status;

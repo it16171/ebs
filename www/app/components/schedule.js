@@ -20,6 +20,18 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     if (day < 28 || day > 30) day = 28;  
     this.today = day-28;
 
+    this.lZ = function(num) {
+        return (num<10?'0':'')+num;
+    } 
+    this.timeCalc = function(start, duration) {
+        var parts = start.split(':');
+        var newM = parseInt(parts[1])+duration;
+        return this.lZ(parseInt(parts[0])+Math.floor(newM/60))+':'+this.lZ(newM%60);
+    }
+    this.getSessionTimeString = function(start, duration) {
+        return start+'-'+this.timeCalc(start, duration);
+    }
+
     this.personalFilter = function(session) {
         return !ctrl.$storage.settings.personalEventsView || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
     }
@@ -64,7 +76,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
         $scope.send = function () {
 
-            $http({method: 'GET',url: shared.apiSrv+'/v1/rate.php?do=rate&session='+$scope.session.id+'&rating='+$scope.starRating+'&fcmt='+shared.getUniqueToken()})
+            $http({method: 'GET',url: shared.apiSrv+'rate.php?do=rate&session='+$scope.session.id+'&rating='+$scope.starRating+'&fcmt='+shared.getUniqueToken()})
             .then(function successCallback(response) {
                 if (!ctrl.s.ratedSessions) ctrl.s.ratedSessions = [];
                 ctrl.s.ratedSessions.push($scope.session.id);
