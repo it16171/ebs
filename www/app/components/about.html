@@ -9,6 +9,18 @@
   </md-toolbar>
 
   <md-content class="card-bg">
+    <md-list class="max-width">
+      <md-list-item>
+        <md-icon>feedback</md-icon>
+        <p>Receive push news</p>
+        <md-switch class="md-secondary" ng-model="about.$storage.settings.pushNews" ng-change="about.toggleNews()"></md-switch>
+      </md-list-item>
+      <md-list-item>
+        <md-icon>event</md-icon>
+        <p>Reminders for my schedule</p>
+        <md-switch class="md-secondary" ng-model="about.$storage.settings.reminders" ng-change="about.toggleReminders()"></md-switch>
+      </md-list-item>
+    </md-list>
     <div class="max-width">
       <md-card>
         <md-card-title>

@@ -93,7 +93,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("about", {
         url: "/about",
         templateUrl: "app/components/about.html",
-        title: "About",
+        title: "Settings",
         controller: "AboutController",
         controllerAs: "about"
     });

@@ -8,7 +8,7 @@ angular.module("ngapp").controller("MainController", function(shared, $state, $s
 
     this.views = [
        // {id: 'main', title: 'Home', icon: 'home'},
-        {id: 'schedule', title: 'Schedule', icon: 'schedule'},
+        {id: 'schedule', title: 'Schedule', icon: 'event'},
         {id: 'speakers', title: 'Speakers', icon: 'people'},
         {id: 'partners', title: 'Sponsors & Partners', icon: 'business'},
         {id: 'shuttle', title: 'Shuttle', icon: 'directions_bus'},

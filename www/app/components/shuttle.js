@@ -39,7 +39,7 @@ angular.module("ngapp").controller("ShuttleController", function(shared, $state,
             .hideDelay(5000)
         );
       });     
-      if (ctrl.$storage.settings.shuttleStatus != 3) $timeout(ctrl.getShuttleInfo, 30000);  
+      if (ctrl.$storage.settings.shuttleStatus != 3) $timeout(ctrl.getShuttleInfo, 60000);  
     }
 
     ctrl.getShuttleInfo();

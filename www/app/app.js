@@ -1,7 +1,6 @@
 "use strict";
 
 angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "ngMap" ])
-// ngTouch is No Longer Supported by Angular-Material
 
 .run(function(shared, $rootScope, $cordovaDevice, $cordovaStatusbar, $localStorage, $state, $mdDialog, $transitions){
 
@@ -13,21 +12,22 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     window.FirebasePlugin.grantPermission();
 
     window.FirebasePlugin.hasPermission(function(data){
-        console.log(data.isEnabled);
-        alert(data.isEnabled);
-        if (data.isEnabled && $localStorage.settings.pushNews == undefined) {
+      console.log(data.isEnabled);
+      if (data.isEnabled) {
+        if ($localStorage.settings.pushNews == undefined) {
             $localStorage.settings.pushNews = true;
-             window.FirebasePlugin.subscribe("news");
+            window.FirebasePlugin.subscribe("news");
         }
+        if ($localStorage.settings.reminders == undefined) {
+            $localStorage.settings.reminders = true;
+        }
+      }
     }); 
 
     window.FirebasePlugin.onTokenRefresh(function(token) {
-        // save this server-side and use it to push notifications to this device
         console.log(token);
         $localStorage.settings.fcmt = token;
-        alert(token);
     }, function(error) {
-      alert(error);
         console.error(error);
     });
 
@@ -49,10 +49,8 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
         });
         
     }, function(error) {
-        alert(error);
         console.error(error);
     });
-    alert('yay2');
   }, false);
 
 
