@@ -53,7 +53,8 @@ angular.module("ngapp").controller("AboutController", function(shared, $state, $
     this.testing = function() {
         this.testingIncr++;
         if (this.testingIncr == 3) {
-            shared.testMode = true;
+            shared.apiSrv = shared.apiSrv.replace('v1', 'test');
+            shared.updateData(true);
             alert('You are in test mode now. Restart the app to get back to normal mode.');
         }
     }

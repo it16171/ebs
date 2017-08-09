@@ -9,7 +9,6 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
     this.lastNotification = null;
     this.lastDataUpdate = 0;
     this.apiSrv = 'http://proxy.nubenum.de/ebs.api.nubenum.de/v1/';
-    this.testMode = false;
     this.updateRequired = false;
     this.defaultData = { 
         "meta" : {"ts" : 103, "appv" : 1, "apiv": 1},
@@ -70,8 +69,8 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
 
     this.updateData = function(force) {
         var d = new Date();
-        if (!force && !ctrl.testMode && d.getTime()-ctrl.lastDataUpdate < 1000000) return;
-        var apiUrl =  ctrl.apiSrv+(ctrl.testMode?'test_':'')+'data.php?appv='+ctrl.defaultData.meta.appv+'&fcmt='+ctrl.getUniqueToken()+'&reminders='+!!ctrl.$storage.settings.reminders+'&starred='+ctrl.getStarredScheduleString();
+        if (!force && d.getTime()-ctrl.lastDataUpdate < 1000000) return;
+        var apiUrl =  ctrl.apiSrv+'data.php?appv='+ctrl.defaultData.meta.appv+'&fcmt='+ctrl.getUniqueToken()+'&reminders='+!!ctrl.$storage.settings.reminders+'&starred='+ctrl.getStarredScheduleString();
         $http({method: 'GET',url:apiUrl})
         .then(function successCallback(response) {
             console.log('data received', apiUrl);
