@@ -32,16 +32,16 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     });
 
     window.FirebasePlugin.onNotificationOpen(function(notification) {
-        console.log(notification);
+        console.log(JSON.stringify(notification));
         shared.updateData(true);
         var action = 'schedule'; 
-        if (notification.notification.title.indexOf('Reminder:') == -1) {
+        if (notification.message && notification.message.title.indexOf('Reminder:') == -1) {
             action = 'news';
         }
        
         var confirm = $mdDialog.confirm()
-          .title(notification.notification.title)
-          .textContent(notification.notification.body)
+          .title((notification.message ? notification.message.title : 'New message'))
+          .textContent((notification.message ? notification.message.body : 'You have received a new message.'))
           .ariaLabel('News')
           .targetEvent(ev)
           .ok((action == 'news' ? 'View news' : 'View schedule'))
