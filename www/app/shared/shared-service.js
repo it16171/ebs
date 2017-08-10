@@ -44,7 +44,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         return false;
     }
    
-    if (this.isCurrentData(this.defaultData)) {
+    if (!this.$storage.data || this.isCurrentData(this.defaultData)) {
         this.$storage.data = this.defaultData;
     } 
 
