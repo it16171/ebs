@@ -40,7 +40,7 @@
                 <md-button class="icon-text" ng-click="schedule.rateSession($event, session)" ng-if="!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1">
                   <md-icon>insert_chart</md-icon> Rate {{session.type}}
                 </md-button>
-                <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
+                <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];schedule.shared.updateData(true)">
                   <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon> My schedule
                 </md-button>
               </md-card-actions>

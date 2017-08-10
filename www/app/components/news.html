@@ -10,12 +10,6 @@
   
   <md-content>
     <md-list flex>
-      <md-list-item class="md-3-line md-long-text" ng-if="news.lastNotification && news.lastNotification.notification.title == news.$storage.news[0].title">          
-        <div class="md-list-item-text">
-          <h3>{{ news.lastNotification.notification.title }}</h3>
-          <p>{{news.lastNotification.notification.body}}</p>
-        </div>
-      </md-list-item>
       <md-list-item class="md-3-line md-long-text" ng-repeat="message in news.$storage.news">          
         <div class="md-list-item-text">
           <h3>{{ message.title }}</h3>

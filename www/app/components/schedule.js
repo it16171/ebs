@@ -6,6 +6,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
     this.$storage = $localStorage;
     this.s = this.$storage.settings;
+    this.shared = shared;
 
     this.title = $state.current.title;
 

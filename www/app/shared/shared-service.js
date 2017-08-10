@@ -6,7 +6,6 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
     this.$storage = $localStorage;
     if(!this.$storage.settings) this.$storage.settings = {"starredEvents":{}, "ratedSessions":[]};
 
-    this.lastNotification = null;
     this.lastDataUpdate = 0;
     this.apiSrv = 'http://proxy.nubenum.de/ebs.api.nubenum.de/v1/';
     this.updateRequired = false;
@@ -45,7 +44,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         return false;
     }
    
-    if (!ctrl.isCurrentData(this.$storage.data)) {
+    if (this.isCurrentData(this.defaultData)) {
         this.$storage.data = this.defaultData;
     } 
 
