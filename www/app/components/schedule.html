@@ -5,9 +5,6 @@
         <md-icon>arrow_back</md-icon>
       </md-button>
       <p flex>{{ schedule.title }}</p>
-      <md-button class="md-icon-button" ng-click="schedule.s.personalEventsView = !schedule.s.personalEventsView;" aria-label="Filter">
-        <md-icon>{{schedule.s.personalEventsView ? 'star' : 'star_border'}}</md-icon>
-      </md-button>
     </div>
   </md-toolbar>
   <md-tabs md-stretch-tabs="auto" class="md-primary" md-selected="schedule.today" flex>
@@ -18,29 +15,31 @@
               <md-card-title>
                 <md-card-title-text>
                   <span class="md-subhead" style="text-transform:uppercase;">{{session.type}}</span>
-                  <h3>{{session.title}}</h3>
+                  <h3 ng-if="session.type == 'speech'" ng-click="schedule.showSpeaker($event, session.speakers[0])">{{schedule.getSpeakerById(session.speakers[0]).name}}</h3>
+                  <h3 ng-if="session.type != 'speech'">{{session.title}}</h3>
                   <span class="md-subhead">{{schedule.getSpeakerById(session.speakerId).name}}</span>
-                  <span ng-if="session.type != 'interview'"><md-icon class="md-18">schedule</md-icon> {{schedule.getSessionTimeString(session.start[0],session.duration)}} <md-icon class="md-18">room</md-icon> {{session.room}}</span>
-                  <div ng-if="session.type == 'interview'" >
-                    <md-icon class="md-18">schedule</md-icon>
-                    <md-select ng-model="selectedTime" placeholder="Time" style="margin-right:8px;display:inline-block;">
-                      <md-option ng-repeat="time in session.start" ng-value="time">{{schedule.getSessionTimeString(time, session.duration)}}</md-option>
-                    </md-select>
-                    <md-icon class="md-18">room</md-icon> {{session.room}}
-                  </div>
+                  <span><md-icon class="md-18">schedule</md-icon> {{schedule.getSessionTimeString(session.start,session.duration)}} <md-icon class="md-18">room</md-icon> {{session.room}}</span>
+                  <span ng-if="session.type != 'speech'">
+                    <span ng-repeat="speaker in session.speakers">
+                      <md-button class="block-button" ng-click="schedule.showSpeaker($event, speaker)">{{schedule.getSpeakerById(speaker).name}} ({{schedule.getSpeakerById(speaker).info}})</md-button>
+                    </span>
+                  <span>
                   <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
                 </md-card-title-text>
                 <md-card-title-media>
-                  <div class="md-media-sm card-media">
-                    <img ng-src="img/speakers/{{session.speakerId}}.jpg" ng-click="schedule.showSpeaker($event, schedule.getSpeakerById(session.speakerId))" class="md-avatar">
+                  <div ng-if="session.type == 'speech'" class="md-media-sm card-media">
+                    <img ng-src="img/speakers/{{session.speakers[0]}}.jpg" ng-click="schedule.showSpeaker($event, session.speakers[0])" class="md-avatar">
                   </div>
                 </md-card-title-media>
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
-                <md-button class="icon-text" ng-click="schedule.rateSession($event, session)" ng-if="!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1">
+                <md-button ng-if="session.type == 'speech' && (!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1)" class="icon-text" ng-click="schedule.rateSession($event, session)" >
                   <md-icon>insert_chart</md-icon> Rate {{session.type}}
                 </md-button>
-                <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];schedule.shared.updateData(true)">
+                <!--<md-button ng-if="session.type != 'speech'" class="icon-text" ng-click="schedule.showDetails($event, session)">
+                  <md-icon>info</md-icon> View Details
+                </md-button>-->
+                <md-button class="icon-text" ng-click="schedule.s.starredEvents[session.id] = !schedule.s.starredEvents[session.id];">
                   <md-icon ng-class="!!schedule.s.starredEvents[session.id] ? 'md-accent' : ''">{{!!schedule.s.starredEvents[session.id] ? 'star' : 'star_border'}}</md-icon> My schedule
                 </md-button>
               </md-card-actions>
@@ -52,20 +51,34 @@
   </md-tabs>
 
   <div style="visibility: hidden">
-      <div class="md-dialog-container" id="rating">
-        <md-dialog layout="column" layout-align="center center"> 
-          <md-dialog-content layout-padding>
-              <h4>Rate "{{session.title}}"</h4>
-              <md-button class="md-icon-button" ng-click="setStarRating($index+1)" ng-repeat="a in range(5) track by $index">
-                <md-icon ng-class="($index < starRating) ? 'md-accent' : ''">{{($index < starRating) ? 'star' : 'star_border'}}</md-icon>
-              </md-button>
-          </md-dialog-content>
-          <md-dialog-actions layout="row">          
-            <span flex></span>
-            <md-button ng-click="send()" class="icon-text" ng-disabled="starRating == 0"><md-icon>send</md-icon> Send</md-button>            
-            <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>
-          </md-dialog-actions>
-        </md-dialog>
-      </div>
+    <div class="md-dialog-container" id="rating">
+      <md-dialog layout="column" layout-align="center center"> 
+        <md-dialog-content layout-padding>
+            <h4>Rate {{speakerName}}</h4>
+            <md-button class="md-icon-button" ng-click="setStarRating($index+1)" ng-repeat="a in range(5) track by $index">
+              <md-icon ng-class="($index < starRating) ? 'md-accent' : ''">{{($index < starRating) ? 'star' : 'star_border'}}</md-icon>
+            </md-button>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">          
+          <span flex></span>
+          <md-button ng-click="send()" class="icon-text" ng-disabled="starRating == 0"><md-icon>send</md-icon> Send</md-button>            
+          <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>
+        </md-dialog-actions>
+      </md-dialog>
     </div>
+  </div>
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="panel-detail">
+      <md-dialog layout="column" layout-align="center center"> 
+        <md-dialog-content layout-padding>
+            <h4>{{session.title}}</h4>
+            <p>{{session.info}}</p>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">          
+          <span flex></span>          
+          <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Close</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+    </div>
+  </div>
 </md-content>

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdDialog, $mdComponentRegistry, $http, $location){
+angular.module("ngapp").controller("PersonalController", function(shared, $state, $scope, $localStorage, $mdDialog, $mdComponentRegistry, $http, $location){
 
     var ctrl = this;
 
@@ -34,7 +34,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     }
 
     this.personalFilter = function(session) {
-        return !ctrl.$storage.settings.personalEventsView || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
+        return ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
     }
 
     this.getSpeakerById = function (speakerId) {
@@ -42,6 +42,8 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         if (!out) out = {"name":speakerId};
         return out;
     }
+
+
 
     this.rateSession = function($event, session) {
         $mdDialog.show({
@@ -92,6 +94,51 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
                         .hideDelay(5000)
                 );
             });       
+        }
+    }
+
+    this.addInvite = function($event, myType) {
+        $mdDialog.show({
+            locals: {invites: ctrl.$storage.data.invites, type: myType},
+            contentElement: '#invite',
+            parent: angular.element(document.body),
+            controller: InviteDialogController,
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: false,
+            scope: $scope,
+            preserveScope: true
+        });        
+    }
+
+    function InviteDialogController($scope, $mdDialog, type, invites) {
+        $scope.invites = invites;
+        $scope.type = type;
+      
+      
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.save = function () {
+
+            /*$http({method: 'GET',url: shared.apiSrv+'rate.php?do=rate&session='+$scope.session.id+'&rating='+$scope.starRating+'&fcmt='+shared.getUniqueToken()})
+            .then(function successCallback(response) {
+                if (!ctrl.s.ratedSessions) ctrl.s.ratedSessions = [];
+                ctrl.s.ratedSessions.push($scope.session.id);
+                $scope.hide();
+            }, function errorCallback(response) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent('It appears that you have no internet connection. Your rating could not be sent.')
+                        .hideDelay(5000)
+                );
+            });    */   
         }
     }
 

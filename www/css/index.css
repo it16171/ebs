@@ -67,3 +67,10 @@ md-tabs-wrapper {
     min-width: 18px;
     margin: 0;
 }
+
+.md-button.block-button  {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

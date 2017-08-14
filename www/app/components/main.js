@@ -7,8 +7,8 @@ angular.module("ngapp").controller("MainController", function(shared, $state, $s
     this.isUpdateRequired = function () { return shared.updateRequired; }
 
     this.views = [
-       // {id: 'main', title: 'Home', icon: 'home'},
-        {id: 'schedule', title: 'Schedule', icon: 'event'},
+        {id: 'personal', title: 'My Schedule', icon: 'perm_contact_calendar'},
+        {id: 'schedule', title: 'Speeches & Panels', icon: 'event'},
         {id: 'speakers', title: 'Speakers', icon: 'people'},
         {id: 'partners', title: 'Sponsors & Partners', icon: 'business'},
         {id: 'shuttle', title: 'Shuttle', icon: 'directions_bus'},

@@ -12,10 +12,18 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controllerAs: "main"
     });
 
+    $stateProvider.state("personal", {
+        url: "/personal",
+        templateUrl: "app/components/personal.html",
+        title: "My Schedule",
+        controller: "PersonalController",
+        controllerAs: "personal"
+    });
+
     $stateProvider.state("schedule", {
         url: "/schedule",
         templateUrl: "app/components/schedule.html",
-        title: "Schedule",
+        title: "Speeches & Panels",
         controller: "ScheduleController",
         controllerAs: "schedule"
     });
