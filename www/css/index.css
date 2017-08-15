@@ -24,6 +24,9 @@ h1,h2,h3,h4,h5,h6, md-toolbar p {
     text-align: center;
     padding: 20px;    
 }
+.empty-note.empty-note-buttons p {
+    margin-bottom: 0;
+}
 
 .md-media-sm.card-media {
     padding-left: 16px;
@@ -31,6 +34,7 @@ h1,h2,h3,h4,h5,h6, md-toolbar p {
 
 md-card-title h3 {
     margin-top: 0;
+    text-transform: none;
 }
 
 .card-bg {
@@ -68,9 +72,19 @@ md-tabs-wrapper {
     margin: 0;
 }
 
-.md-button.block-button  {
+.block-button, .md-button.block-button  {
     display: block;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
+}
+
+.md-subhead.upper {
+    text-transform: uppercase;
+}
+
+md-select.select-inline {
+    margin:0px 4px 24px 4px;
+    display:inline-block;
 }

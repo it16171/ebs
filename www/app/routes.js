@@ -14,10 +14,10 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
 
     $stateProvider.state("personal", {
         url: "/personal",
-        templateUrl: "app/components/personal.html",
+        templateUrl: "app/components/schedule.html",
         title: "My Schedule",
-        controller: "PersonalController",
-        controllerAs: "personal"
+        controller: "ScheduleController",
+        controllerAs: "schedule"
     });
 
     $stateProvider.state("schedule", {
@@ -101,7 +101,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("about", {
         url: "/about",
         templateUrl: "app/components/about.html",
-        title: "Settings",
+        title: "About",
         controller: "AboutController",
         controllerAs: "about"
     });

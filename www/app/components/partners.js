@@ -6,5 +6,11 @@ angular.module("ngapp").controller("PartnersController", function(shared, $state
 
     this.$storage = $localStorage;
 
+    this.filters = [
+            {"id":"sponsor", "name":"sponsors"},
+            {"id":"partner", "name":"partners"},
+            {"id":"inno", "name":"inno"},
+    ];
+
     this.title = $state.current.title;
 });

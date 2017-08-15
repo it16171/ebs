@@ -4,6 +4,8 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
     var ctrl = this;
 
+    this.isPersonal = ($state.current.name == 'personal');
+
     this.$storage = $localStorage;
     this.s = this.$storage.settings;
     this.shared = shared;
@@ -34,7 +36,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     }
 
     this.personalFilter = function(session) {
-        return !ctrl.$storage.settings.personalEventsView || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
+        return !ctrl.isPersonal || session.type == 'generic' || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
     }
 
     this.getSpeakerById = function (speakerId) {
@@ -46,7 +48,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     this.rateSession = function($event, session) {
         $mdDialog.show({
             locals: {sessionToRate: session},
-            contentElement: '#rating',
+            contentElement: '#rating-dialog',
             parent: angular.element(document.body),
             controller: RateDialogController,
             targetEvent: $event,
@@ -95,9 +97,49 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         }
     }
 
+    this.addInvite = function($event, myType, myTabDay) {
+        $mdDialog.show({
+            locals: {invites: ctrl.$storage.data.invites, type: myType, tabDay: myTabDay},
+            contentElement: '#invite-dialog',
+            parent: angular.element(document.body),
+            controller: InviteDialogController,
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: false,
+            scope: $scope,
+            preserveScope: true
+        });        
+    }
+
+    function InviteDialogController($scope, $mdDialog, type, invites, tabDay) {
+        $scope.invites = invites;
+        $scope.type = type;
+        $scope.selectedCompany = null;
+        $scope.selectedHour = null;
+        $scope.selectedMinute = null;
+        $scope.selectedDay = tabDay;
+      
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.save = function () {
+            console.log($scope.selectedHour, $scope.selectedMinute);
+            var truth = true;
+            if ($scope.type == 'interview') truth = $scope.selectedHour + ':' + $scope.selectedMinute;
+            ctrl.$storage.settings.starredEvents[$scope.selectedCompany] = truth;
+
+            ctrl.shared.updateData(true); 
+            $scope.hide();
+        }
+    }
 
     this.showSpeaker = function($event, mySpeaker) {
-        //$location.hash("dialog");
         $mdDialog.show({
             locals: {speaker: ctrl.getSpeakerById(mySpeaker)},
             controller: SpeakerDialogController,
@@ -111,6 +153,28 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     function SpeakerDialogController($scope, $mdDialog, speaker) {
         
         $scope.speaker = speaker;
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+    }
+
+    this.showDetail = function($event, mySession) {
+        $mdDialog.show({
+            locals: {session: mySession},
+            contentElement: '#detail-dialog',
+            parent: angular.element(document.body),
+            controller: DetailDialogController,
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: false,
+            scope: $scope,
+            preserveScope: true
+        });     
+    }
+  
+    function DetailDialogController($scope, $mdDialog, session) {
+        
+        $scope.session = session;
         $scope.hide = function() {
             $mdDialog.hide();
         };

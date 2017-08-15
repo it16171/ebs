@@ -6,6 +6,26 @@ angular.module("ngapp").controller("NewsController", function(shared, $state, $s
     this.title = $state.current.title;
     this.$storage = $localStorage;
 
+    this.toggleNews = function() {
+        document.addEventListener("deviceready", function () {
+            if (ctrl.$storage.settings.pushNews) {
+                console.log('enable push');         
+                window.FirebasePlugin.grantPermission();
+                window.FirebasePlugin.hasPermission(function(data){
+                    console.log(data.isEnabled);
+                    if (!data.isEnabled) {
+                        ctrl.$storage.settings.pushNews = false;
+                    } else {
+                        window.FirebasePlugin.subscribe("news");
+                    }
+                });        
+            } else {
+                console.log('disable push');
+                window.FirebasePlugin.unsubscribe("news");
+            }
+        }, false);
+    }
+
     this.subscribe = function() {
         document.addEventListener("deviceready", function () {
             if (ctrl.$storage.settings.pushNews) {
