@@ -7,8 +7,8 @@ angular.module("ngapp").controller("PartnersController", function(shared, $state
     this.$storage = $localStorage;
 
     this.filters = [
-            {"id":"sponsor", "name":"sponsors"},
-            {"id":"partner", "name":"partners"},
+            {"id":"corporate", "name":"partners"},
+            {"id":"sponsor", "name":"sponsors"},            
             {"id":"inno", "name":"inno"},
     ];
 

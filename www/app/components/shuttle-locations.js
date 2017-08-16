@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("ShuttleLocationsController", function(shared, NgMap, $state, $scope, $localStorage, $mdComponentRegistry, $mdToast, $http){
+angular.module("ngapp").controller("ShuttleLocationsController", function(shared, NgMap, $state, $scope, $localStorage, $mdComponentRegistry, $mdToast, $mdDialog, $http){
 
     var ctrl = this;
     this.$storage = $localStorage;
@@ -35,6 +35,22 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
       });       
     }
 
+
+    this.confirmRequest = function (ev, locationId) {
+      var confirm = $mdDialog.confirm()
+      .title('Ask for a shuttle')
+      .textContent('Do you really want to ask for a shuttle now?')
+      .ariaLabel('Confirm')
+      .targetEvent(ev)
+      .ok('Ask now')
+      .cancel('Cancel');
+
+      $mdDialog.show(confirm).then(function() {
+        ctrl.requestShuttle(locationId)
+      }, function() {
+        
+      });
+    }
 
   
 

@@ -23,7 +23,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("schedule", {
         url: "/schedule",
         templateUrl: "app/components/schedule.html",
-        title: "Speeches & Panels",
+        title: "General Schedule",
         controller: "ScheduleController",
         controllerAs: "schedule"
     });
@@ -39,7 +39,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("partners", {
         url: "/partners",
         templateUrl: "app/components/partners.html",
-        title: "Sponsors & Partners",
+        title: "Partners & Sponsors",
         controller: "PartnersController",
         controllerAs: "partners"
     });

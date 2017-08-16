@@ -14,7 +14,7 @@
             <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule.concat(schedule.isPersonal ? schedule.$storage.data.invites : []) | filter:{day:day.id}:true | filter:schedule.personalFilter) | orderBy:'start'">
               <md-card-title>
                 <md-card-title-text layout-fill>
-                  <span ng-if="session.type != 'generic'" class="md-subhead upper">{{(session.type == 'duel' ? 'Duel Discussion' : session.type)}}</span>
+                  <span ng-if="session.type != 'generic'" class="md-subhead upper" style="color:#{{schedule.colors[session.type]}}">{{(session.type == 'duel' ? 'Duel Discussion' : session.type)}}</span>
                   <h3 ng-if="session.type == 'speech'" ng-click="schedule.showSpeaker($event, session.speakers[0])">{{schedule.getSpeakerById(session.speakers[0]).name}}</h3>
                   <h3 ng-if="session.type != 'speech'">{{session.title}}</h3>
                   <span ng-if="session.type == 'speech' && session.title.length > 0">{{session.title}}</span>
@@ -58,9 +58,9 @@
                 </md-button>
               </span>
                    
-              <p>Star the events you're attending in order to display them here. Head over to </p>
+              <p>Star the events you're attending in order to display them here. Head over to the </p>
               <md-button ng-if="true" class="icon-text" ng-href="#/schedule">
-                <md-icon>event</md-icon> Speeches & Panels
+                <md-icon>event</md-icon> General Schedule
               </md-button>
             </div>
           </div>

@@ -10,13 +10,22 @@
   <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
         <md-tab ng-repeat="filter in partners.filters" label="{{filter.name}}">
           <md-tab-content class="card-bg">
+            <p ng-if="filter.id == 'corporate'" class="subhead">Corporate Partners</p>
             <div style="padding:4px;" layout="row" layout-wrap>
                 <div flex="50" flex-gt-xs="33" flex-gt-sm="25" flex-gt-md="20" flex-gt-lg="10" ng-repeat="partner in partners.$storage.data.partners | filter:{type:filter.id}:true">
                     <md-card style="margin:4px">
-                      <img ng-src="{{partner.online?'https://ebs.api.nubenum.de/res':'img'}}/partners/{{partner.id}}.png" class="md-card-image">
+                      <img ng-src="{{partner.web?'https://ebs.api.nubenum.de/res':'img'}}/partners/{{partner.id}}.png" class="md-card-image">
                     </md-card>
                 </div>
             </div>
+            <p ng-if="filter.id == 'corporate'" class="subhead">Media Partners</p>
+            <div ng-if="filter.id == 'corporate'" style="padding:4px;" layout="row" layout-wrap>
+              <div flex="50" flex-gt-xs="33" flex-gt-sm="25" flex-gt-md="20" flex-gt-lg="10" ng-repeat="partner in partners.$storage.data.partners | filter:{type:'media'}:true">
+                  <md-card style="margin:4px">
+                    <img ng-src="{{partner.web?'https://ebs.api.nubenum.de/res':'img'}}/partners/{{partner.id}}.png" class="md-card-image">
+                  </md-card>
+              </div>
+          </div>
           </md-tab-content>
         </md-tab>
     </md-tabs>

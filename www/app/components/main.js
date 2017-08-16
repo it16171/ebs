@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("MainController", function(shared, $state, $scope, $mdComponentRegistry){
+angular.module("ngapp").controller("MainController", function(shared, $state, $scope, $mdComponentRegistry, $mdDialog){
 
     var ctrl = this;
 
@@ -8,13 +8,15 @@ angular.module("ngapp").controller("MainController", function(shared, $state, $s
 
     this.views = [
         {id: 'personal', title: 'My Schedule', icon: 'perm_contact_calendar'},
-        {id: 'schedule', title: 'Speeches & Panels', icon: 'event'},
+        {id: 'schedule', title: 'General Schedule', icon: 'event'},
         {id: 'speakers', title: 'Speakers', icon: 'people'},
-        {id: 'partners', title: 'Sponsors & Partners', icon: 'business'},
+        {id: 'partners', title: 'Partners & Sponsors', icon: 'business'},
         {id: 'shuttle', title: 'Shuttle', icon: 'directions_bus'},
         {id: 'news', title: 'News', icon: 'feedback'},
         {id: 'impressions', title: 'Photo Wall', icon: 'photo_camera'}
     ];
+
+    
 
 
     this.title = $state.current.title;

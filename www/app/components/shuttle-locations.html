@@ -15,7 +15,8 @@
           <md-list flex>
             <md-list-item ng-repeat="location in shuttleLocations.$storage.data.pickupLocations" class="secondary-button-padding">
               <p>{{ location.name }}</p>
-              <md-button class="md-secondary" ng-click="shuttleLocations.requestShuttle(location.id)">Request now</md-button>
+              <md-button class="md-secondary" ng-href="https://www.google.de/maps/search/{{location.lat}},{{location.lon}}">Route</md-button>
+              <md-button ng-if="!shuttleLocations.$storage.data.shuttleDisabled" class="md-secondary" ng-click="shuttleLocations.confirmRequest($event, shuttleLocations.currentMarker.id)">Ask now</md-button>
             </md-list-item>
           </md-list>
         </md-tab-content>
@@ -38,7 +39,8 @@
               <info-window id="info">
                 <div ng-non-bindable="">
                   <p>{{shuttleLocations.currentMarker.name}}</p>
-                  <md-button ng-click="shuttleLocations.requestShuttle(shuttleLocations.currentMarker.id)">Request now</md-button>
+                  <md-button class="block-button" ng-href="https://www.google.de/maps/search/{{shuttleLocations.currentMarker.lat}},{{shuttleLocations.currentMarker.lon}}">Route</md-button>
+                  <md-button class="block-button" ng-if="!shuttleLocations.$storage.data.shuttleDisabled" ng-click="shuttleLocations.confirmRequest($event, shuttleLocations.currentMarker.id)">Ask now</md-button>
                 </div>
               </info-window>
             </ng-map>

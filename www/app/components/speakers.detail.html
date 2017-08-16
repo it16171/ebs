@@ -1,8 +1,8 @@
 <md-dialog aria-label="Speaker">
     <md-dialog-content>
-      <img ng-src="{{speaker.online?'https://ebs.api.nubenum.de/res':'img'}}/speakers/{{speaker.id}}.jpg"  style="width:100%">
+      <img ng-src="{{speaker.web?'https://ebs.api.nubenum.de/res':'img'}}/speakers/{{speaker.id}}.jpg"  style="width:100%">
       <div class="md-dialog-content">
-        <img ng-src="{{speaker.online?'https://ebs.api.nubenum.de/res':'img'}}/speakers/{{speaker.id}}_logo.png" style="max-width:100%;">
+        <img ng-src="{{speaker.web?'https://ebs.api.nubenum.de/res':'img'}}/speakers/{{speaker.id}}_logo.png" style="max-width:100%;">
         <div>
           <h3>{{speaker.name}}</h3>
           <p>{{speaker.info}}</p>

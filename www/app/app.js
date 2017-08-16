@@ -3,7 +3,7 @@
 angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "ngMap" ])
 
 .run(function(shared, $rootScope, $cordovaDevice, $cordovaStatusbar, $localStorage, $state, $mdDialog, $transitions){
-
+  
   document.addEventListener("deviceready", function () {
     $cordovaStatusbar.overlaysWebView(false);
     $cordovaStatusbar.styleHex('#003d78');
@@ -31,26 +31,26 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
         console.error(error);
     });
 
+ 
+
     window.FirebasePlugin.onNotificationOpen(function(notification) {
         console.log(JSON.stringify(notification));
         shared.updateData(true);
-        var action = 'schedule'; 
-        if (notification.message && notification.message.title.indexOf('Reminder:') == -1) {
-            action = 'news';
+        var action = 'news'; 
+        if (notification && notification.data && notification.data.type) {
+            action = notification.data.type;
         }
-       
         var confirm = $mdDialog.confirm()
-          .title((notification.message ? notification.message.title : 'New message'))
-          .textContent((notification.message ? notification.message.body : 'You have received a new message.'))
-          .ariaLabel('News')
-          .targetEvent(ev)
-          .ok((action == 'news' ? 'View news' : 'View schedule'))
-          .cancel('Close');
-
+        .title((action == 'personal' ? 'Reminder' : 'New message'))
+        .textContent((action == 'personal' ? 'Do you want to view your schedule?' : 'You have received a new message.'))
+        .ariaLabel('News')
+        .ok((action == 'personal' ? 'View schedule' : 'View news'))
+        .cancel('Close');
+      
         $mdDialog.show(confirm).then(function() {
           $state.transitionTo(action);
         }, function() {
-         
+        
         });
         
     }, function(error) {

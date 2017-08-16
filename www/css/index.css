@@ -80,8 +80,13 @@ md-tabs-wrapper {
     text-align: left;
 }
 
-.md-subhead.upper {
+.md-subhead.upper, .subhead.upper {
     text-transform: uppercase;
+}
+.subhead {
+    color: #707070;
+    padding: 8px 0 0 0;
+    text-align: center;
 }
 
 md-select.select-inline {
