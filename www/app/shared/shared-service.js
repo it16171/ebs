@@ -91,6 +91,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
             var d = new Date();
             ctrl.$storage.settings.fcmt = "substitute-"+d.getTime();
         }
+        console.log('unique', ctrl.$storage.settings.fcmt);
         return ctrl.$storage.settings.fcmt;
     }
 
@@ -101,14 +102,18 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
             if (value) concat += ','+key;
             if (value && value !== true) concat += '_'+value;
         });
-        return concat.substring(1);
+        if (concat.length > 0) concat = concat.substring(1);
+        console.log('schedulestring', concat)
+        return concat;
     }
 
     this.updateData = function(force) {
         var d = new Date();
         var diff = d.getTime()-ctrl.lastDataUpdate;
         if (!force && diff < 1000000 || force && diff < 3000) return;
-        var apiUrl =  ctrl.apiSrv+'data.php?appv='+ctrl.defaultData.meta.appv+'&fcmt='+ctrl.getUniqueToken()+'&reminders='+!!ctrl.$storage.settings.reminders+'&starred='+ctrl.getStarredScheduleString();
+        var apiUrl = ctrl.apiSrv+'data.php';
+        apiUrl = ctrl.apiSrv+'data.php?appv='+ctrl.defaultData.meta.appv+'&fcmt='+ctrl.getUniqueToken()+'&reminders='+!!ctrl.$storage.settings.reminders+'&starred='+ctrl.getStarredScheduleString();
+        
         $http({method: 'GET',url:apiUrl})
         .then(function successCallback(response) {
             console.log('data received', apiUrl);

@@ -14,7 +14,7 @@
       <md-list-item>
         <md-icon>feedback</md-icon>
         <p>Receive push notifications</p>
-        <md-switch class="md-secondary" ng-model="about.$storage.settings.pushNews" ng-change="about.toggleNews()"></md-switch>
+        <md-switch class="md-secondary" ng-model="news.$storage.settings.pushNews" ng-change="news.toggleNews()"></md-switch>
       </md-list-item>
     
       <md-list-item class="md-3-line md-long-text" ng-repeat="message in news.$storage.news">          

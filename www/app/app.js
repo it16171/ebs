@@ -25,8 +25,9 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     }); 
 
     window.FirebasePlugin.onTokenRefresh(function(token) {
-        console.log(token);
         $localStorage.settings.fcmt = token;
+        console.log('fcmt', $localStorage.settings.fcmt);
+        
     }, function(error) {
         console.error(error);
     });
@@ -37,8 +38,8 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
         console.log(JSON.stringify(notification));
         shared.updateData(true);
         var action = 'news'; 
-        if (notification && notification.data && notification.data.type) {
-            action = notification.data.type;
+        if (notification && notification.type) {
+            action = notification.type;
         }
         var confirm = $mdDialog.confirm()
         .title((action == 'personal' ? 'Reminder' : 'New message'))
