@@ -45,6 +45,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     }
 
     this.personalFilter = function(session) {
+        if (session.type == 'interview') session.start = ctrl.s.starredEvents[session.id];
         return !ctrl.isPersonal || session.type == 'generic' || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
     }
 

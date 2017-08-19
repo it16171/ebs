@@ -62,7 +62,12 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
 
   $transitions.onStart({ }, function(trans) {
       console.log('nav');
-      $mdDialog.cancel();
+    
+      if (angular.element(document.body).hasClass('md-dialog-is-showing')) {
+        $mdDialog.cancel();
+
+        //return false;
+      }
       shared.updateData();
   });
     

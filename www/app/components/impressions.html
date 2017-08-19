@@ -16,7 +16,7 @@
         <md-option ng-repeat="(day, data) in impressions.photoList" ng-value="day">{{day}}</md-option>
       </md-select>
 
-      <md-select  ng-model="selectedTime" placeholder="Time">
+      <md-select  ng-model="$parent.selectedTime" placeholder="Time" ng-if="selectedDay && impressions.photoList[selectedDay].length != 0 && selectedDay != 'Other'">
         <md-option ng-repeat="(time, data) in impressions.photoList[selectedDay]" ng-value="time">{{time}}</md-option>
       </md-select>
     </div>

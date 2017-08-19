@@ -2,23 +2,36 @@
   <md-toolbar class="md-whiteframe-4dp">
     <div><img class="" src="img/logo_big.png" style="margin: 16px auto;display:block;width:90%;max-width:500px;"></div>
   </md-toolbar>
-  
-  <md-content>
+
+
+  <md-content class="max-width">
     <p layout-padding ng-if="main.isUpdateRequired()" md-colors="{color:'warn'}">Apparently, the app is outdated. Please update via your app store.</p>
-    <md-list flex>
-      <md-list-item ng-repeat="view in main.views" ng-href="#/{{view.id}}">
-        <md-icon>{{view.icon}}</md-icon>
-        <p>{{view.title}}</p>
-      </md-list-item>
-      <md-list-item ng-href="https://www.facebook.com/ebs.symposium/">
-        <md-icon md-svg-src="img/fb.svg"></md-icon>
-        <p>Facebook</p>
-      </md-list-item>
-      <md-list-item ng-href="#/about">
-        <md-icon>info</md-icon>
-        <p>About</p>
-      </md-list-item>
-    </md-list>
-  </md-content>
-      
+
+    <div style="padding:4px;" layout="row" layout-wrap>
+      <div flex="33" ng-repeat="view in main.views" class="icon-tile">
+          <md-button ng-href="#/{{view.id}}">
+            <md-icon class="md-48">{{view.icon}}</md-icon>
+            <div class="md-padding">
+              {{view.title}}
+            </div>
+          </md-button>                 
+      </div>
+      <div flex="33" class="icon-tile">
+        <md-button ng-href="https://www.facebook.com/ebs.symposium/">
+          <md-icon class="md-48" md-svg-src="img/fb.svg"></md-icon>
+          <div class="md-padding">
+            Facebook
+          </div>
+        </md-button>
+      </div>
+      <div flex="33"  class="icon-tile">
+        <md-button ng-href="#/about">
+          <md-icon class="md-48">info</md-icon>
+          <div class="md-padding">
+            About
+          </div>
+        </md-button>
+      </div>
+    </div>  
+  </md-content>      
 </md-content>

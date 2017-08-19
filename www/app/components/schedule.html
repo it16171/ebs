@@ -15,17 +15,20 @@
               <md-card-title>
                 <md-card-title-text layout-fill>
                   <span ng-if="session.type != 'generic'" class="md-subhead upper" style="color:#{{schedule.colors[session.type]}}">{{(session.type == 'duel' ? 'Duel Discussion' : session.type)}}</span>
-                  <h3 ng-if="session.type == 'speech'" ng-click="schedule.showSpeaker($event, session.speakers[0])">{{schedule.getSpeakerById(session.speakers[0]).name}}</h3>
+                  <h3 ng-if="session.type == 'speech'" ng-click="schedule.showSpeaker($event, session.speakers[0])">
+                    {{schedule.getSpeakerById(session.speakers[0]).name}}
+                    <span class="md-subhead">{{schedule.getSpeakerById(session.speakers[0]).co}}</span>
+                  </h3>
                   <h3 ng-if="session.type != 'speech'">{{session.title}}</h3>
+                  
                   <span ng-if="session.type == 'speech' && session.title.length > 0">{{session.title}}</span>
                   <span>
                     <md-icon class="md-18">schedule</md-icon>
-                    {{(session.type == 'interview' ? schedule.s.starredEvents[session.id] :schedule.getSessionTimeString(session.start,session.duration))}} 
+                    {{(session.type == 'interview' ? schedule.s.starredEvents[session.id] : schedule.getSessionTimeString(session.start,session.duration))}} 
                     <md-icon class="md-18">room</md-icon> {{session.room}}
                   </span>
                   <span ng-if="session.type != 'speech'" layout="column" layout-align="center start">
-                      <md-button ng-repeat="speaker in session.speakers" class="block-button" ng-click="schedule.showSpeaker($event, speaker)">{{schedule.getSpeakerById(speaker).name}} ({{schedule.getSpeakerById(speaker).info}})</md-button>
-                  
+                      <md-button ng-repeat="speaker in session.speakers" class="block-button" ng-click="schedule.showSpeaker($event, speaker)">{{schedule.getSpeakerById(speaker).name}} ({{schedule.getSpeakerById(speaker).co}})</md-button>                  
                   <span>
                   <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
                 </md-card-title-text>
@@ -79,8 +82,8 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">          
           <span flex></span>
-          <md-button ng-click="send()" class="icon-text" ng-disabled="starRating == 0"><md-icon>send</md-icon> Send</md-button>            
           <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>
+          <md-button ng-click="send()" class="icon-text" ng-disabled="starRating == 0"><md-icon>send</md-icon> Send</md-button>            
         </md-dialog-actions>
       </md-dialog>
     </div>
@@ -120,8 +123,8 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">          
           <span flex></span>
+          <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>          
           <md-button ng-click="save()" class="icon-text" ng-disabled="!selectedCompany || type == 'interview' && (!selectedHour || !selectedMinute)"><md-icon>check</md-icon> Save</md-button>            
-          <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>
         </md-dialog-actions>
       </md-dialog>
     </div>
