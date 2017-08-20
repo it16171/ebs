@@ -55,7 +55,8 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
             {"type": "workshop", "id": "ibm-ws", "day" : 28, "start": "17:00", "duration": 60, "room": "Forum", "speakers": [], "alert": "", "title": "IBM", "info": ""},
             {"type": "interview", "id": "telekom-iv", "day" : 28, "start": "", "duration": 60, "room": "Forum", "speakers": [], "alert": "", "title": "Telekom", "info": ""},
             {"type": "interview", "id": "bahlsen-iv", "day" : 28, "start": "", "duration": 60, "room": "Forum", "speakers": [], "alert": "", "title": "Bahlsen", "info": ""},
-            {"type": "interview", "id": "pwc-iv", "day" : 29, "start": "", "duration": 60, "room": "Forum", "speakers": [], "alert": "", "title": "PWC", "info": ""}
+            {"type": "interview", "id": "pwc-iv", "day" : 29, "start": "", "duration": 60, "room": "Forum", "speakers": [], "alert": "", "title": "PWC", "info": ""},
+            {"type": "interview", "id": "thomas-cook-iv", "day" : 30, "start": "", "duration": 60, "room": "Forum", "speakers": [], "alert": "", "title": "Thomas Cook", "info": ""}
         ],
         "pickupLocations" : [
             {"id": "oestrich-winkel-bhf", "lat": 50.002455, "lon" : 8.019080, "name": "Oestrich-Winkel Bhf"},
