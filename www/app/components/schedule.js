@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdDialog, $mdComponentRegistry, $http, $location){
+angular.module("ngapp").controller("ScheduleController", function(shared, $state, $scope, $localStorage, $mdDialog, $mdToast, $mdComponentRegistry, $http, $location){
 
     var ctrl = this;
 

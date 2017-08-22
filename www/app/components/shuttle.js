@@ -33,13 +33,13 @@ angular.module("ngapp").controller("ShuttleController", function(shared, $state,
              ctrl.$storage.settings.shuttleRequestedTo = null;
         }
       }, function errorCallback(response) {
-        $mdToast.show(
+        if ($state.current.name == 'shuttle') $mdToast.show(
           $mdToast.simple()
             .textContent('It appears that you have no internet connection. The shuttle status can\'t be updated.')
             .hideDelay(5000)
         );
       });     
-      if (ctrl.$storage.settings.shuttleStatus != 3) $timeout(ctrl.getShuttleInfo, 60000);  
+      if ($state.current.name == 'shuttle' && ctrl.$storage.settings.shuttleStatus != 3) $timeout(ctrl.getShuttleInfo, 60000);  
     }
 
     ctrl.getShuttleInfo();

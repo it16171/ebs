@@ -24,7 +24,7 @@ h3 .md-subhead {
     display: block;
 }
 .empty-note {
-    color: #707070;
+    color:  rgba(0,0,0,0.54);
     text-align: center;
     padding: 20px;    
 }
@@ -106,14 +106,14 @@ md-tabs-wrapper {
 }
 .subhead-button .sh, .md-button.subhead-button .sh {
     text-transform: none;
-    color: #707070;
+    color: rgba(0,0,0,0.54);;
 }
 
 .md-subhead.upper, .subhead.upper {
     text-transform: uppercase;
 }
 .subhead {
-    color: #707070;
+    color: rgba(0,0,0,0.54);;
     padding: 8px 0 0 0;
     text-align: center;
 }

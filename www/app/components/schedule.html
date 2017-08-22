@@ -22,6 +22,7 @@
                   <h3 ng-if="session.type != 'speech'">{{session.title}}</h3>
                   
                   <span ng-if="session.type == 'speech' && session.title.length > 0">{{session.title}}</span>
+                  <span ng-if="session.type == 'generic' && session.info.length > 0">{{session.info}}</span>
                   <span>
                     <md-icon class="md-18">schedule</md-icon>
                     {{(session.type == 'interview' ? schedule.s.starredEvents[session.id] : schedule.getSessionTimeString(session.start,session.duration))}} 
@@ -29,7 +30,7 @@
                   </span>
                   <span ng-if="session.type != 'speech'" layout="column" layout-align="center start">
                       <md-button ng-repeat="speakerId in session.speakers" ng-init="speaker = schedule.getSpeakerById(speakerId)" class="block-button subhead-button" ng-click="schedule.showSpeaker($event, speakerId)">
-                        {{speaker.name}} 
+                        {{$index == 0 && session.type == 'panel' ? 'Host: ' : ''}}{{speaker.name}} 
                         <div class="sh">{{speaker.co}}</div>
                       </md-button>                  
                   <span>
@@ -41,7 +42,7 @@
                   </div>
                 </md-card-title-media>
               </md-card-title>
-              <md-card-actions ng-if="session.type != 'generic'" layout="row" layout-align="end center">
+              <md-card-actions ng-if="session.type != 'generic'" layout="row" layout-align="end center" layout-wrap>
                 <md-button ng-if="session.type == 'speech' && (!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1)" class="icon-text" ng-click="schedule.rateSession($event, session)" >
                   <md-icon>insert_chart</md-icon> Rate {{session.type}}
                 </md-button>

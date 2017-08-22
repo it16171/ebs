@@ -23,8 +23,7 @@
       </md-tab>
       <md-tab label="Map" layout="column" flex>
         <md-tab-content layout="column" flex>
-
-
+          <p ng-if="!shuttleLocations.map" layout-padding class="empty-note">You need an internet connection to view the map.</p>
           <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyA8saAicVtJk5Ht19mlC5GJrsqmLnADwDQ" layout-fill>
             <ng-map center="50.0121135,8.0504839" zoom="11" layout-fill>
 
