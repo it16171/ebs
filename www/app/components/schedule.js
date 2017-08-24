@@ -18,7 +18,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         {"id":30, "title":"Sat 30th"},
     ];
 
-    this.colors = {
+    this.typeColors = {
         "speech":"004e8b",
         "panel":"42aa85",
         "duel":"004e8b",
@@ -26,6 +26,12 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         "workshop":"ffcc00",
         "interview":"ffcc00"
     };
+
+    this.getTypeName = function(session) {
+        if (session.type == 'duel') return 'Duel Discussion';
+        if (session.type == 'speech' && (session.id == 'opening' || session.id == "closing")) return session.id+' speech';
+        return session.type;
+    }
 
     var date = new Date();
     var day = date.getDate();

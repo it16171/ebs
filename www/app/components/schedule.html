@@ -14,7 +14,7 @@
             <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule.concat(schedule.isPersonal ? schedule.$storage.data.invites : []) | filter:{day:day.id}:true | filter:schedule.personalFilter) | orderBy:'start'">
               <md-card-title>
                 <md-card-title-text layout-fill>
-                  <span ng-if="session.type != 'generic'" class="md-subhead upper" style="color:#{{schedule.colors[session.type]}}">{{(session.type == 'duel' ? 'Duel Discussion' : session.type)}}</span>
+                  <span ng-if="session.type != 'generic'" class="md-subhead upper" style="color:#{{schedule.typeColors[session.type]}}">{{schedule.getTypeName(session)}}</span>
                   <h3 ng-if="session.type == 'speech'" ng-init="speaker = schedule.getSpeakerById(session.speakers[0])" ng-click="schedule.showSpeaker($event, session.speakers[0])">
                     {{speaker.name}}
                     <span class="md-subhead">{{speaker.co}}</span>
@@ -30,7 +30,7 @@
                   </span>
                   <span ng-if="session.type != 'speech'" layout="column" layout-align="center start">
                       <md-button ng-repeat="speakerId in session.speakers" ng-init="speaker = schedule.getSpeakerById(speakerId)" class="block-button subhead-button" ng-click="schedule.showSpeaker($event, speakerId)">
-                        {{$index == 0 && session.type == 'panel' ? 'Host: ' : ''}}{{speaker.name}} 
+                        {{$index == session.speakers.length-1 && session.type == 'panel' ? 'Host: ' : ''}}{{speaker.name}} 
                         <div class="sh">{{speaker.co}}</div>
                       </md-button>                  
                   <span>

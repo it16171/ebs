@@ -1,12 +1,12 @@
 <md-dialog aria-label="Speaker">
     <md-dialog-content class="max-width">
-      <img ng-src="{{speaker.web?'https://ebs.api.nubenum.de/res':'img'}}/speakers/{{speaker.id}}.jpg"  style="width:100%">
+      <img ng-if="speaker.web < 2" ng-src="{{speaker.web==1 ? 'https://ebs.api.nubenum.de/res' : 'img'}}/speakers/{{speaker.id}}.jpg"  style="width:100%">
       <div class="md-dialog-content">
-        <img ng-src="{{speaker.web?'https://ebs.api.nubenum.de/res':'img'}}/speakers/{{speaker.id}}_logo.png" style="max-width:100%;">
+        <img ng-if="speaker.web < 2" ng-src="{{speaker.web==1 ? 'https://ebs.api.nubenum.de/res' : 'img'}}/speakers/{{speaker.id}}_logo.png" style="max-width:100%;">
         <div>
           <h3>{{speaker.name}}</h3>
-          <p>{{speaker.info}} // {{speaker.co}}</p>
-          <p>{{speaker.text}}</p>
+          <p>{{speaker.info+(speaker.co.length > 0 ? ' // ':'')+speaker.co}}</p>
+          <p ng-repeat="frag in speaker.text.split('\n') track by $index">{{frag}}</p>
         </div>
       </div>
     </md-dialog-content>
