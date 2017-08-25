@@ -1,0 +1,37 @@
+<md-content layout="column" layout-fill class="card-bg">
+  <md-toolbar class="md-whiteframe-4dp">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" onclick="history.back()">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <p ng-click="about.testing()">{{ about.title }}</p>
+    </div>
+  </md-toolbar>
+
+  <md-content class="card-bg">
+    <div class="max-width">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <h3>About the EBS Symposium</h3>
+            <p class="longtext">The EBS Symposium is one of Europe’s largest and most prestigious student-run business conferences. With a history spanning 27 years, the EBS Symposium offers speeches, workshops, a recruiting and an innovation fair. This three-day event gathers about 1000 participants from the best universities and companies in Europe, addressing topics relevant to business and politics.</p>
+          </md-card-title-text>
+        </md-card-title>
+      </md-card>
+      <md-card>      
+        <md-card-content>
+            Development: <a href="http://nubenum.de">http://nubenum.de</a>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-href="http://nubenum.de/inc/feedback/?subject=EBS-Symposium-App">Help with technical issues</md-button>
+        </md-card-actions>
+      </md-card>
+
+      <md-card> 
+        <md-card-content>
+            Open-Source Licenses
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-content>  
+</md-content>
