@@ -4,6 +4,14 @@
     outline: none;
 }
 
+md-dialog * ::-webkit-scrollbar {width: 5px;}
+
+md-dialog * ::-webkit-scrollbar-track { border-radius: 10px;}
+
+md-dialog * ::-webkit-scrollbar-thumb { border-radius: 10px; background: rgb(169,169,169); }
+
+md-dialog * ::-webkit-scrollbar-thumb:window-inactive {background: rgb(128,128,128); }
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -13,6 +21,10 @@ body {
     margin:0px;
     padding:0px;
     width:100%;
+}
+
+a {
+    color: #004e8b;
 }
 
 h1,h2,h3, md-toolbar p {
@@ -130,4 +142,8 @@ md-select.select-inline {
 
 .longtext {
     font-size:14px;
+}
+
+.md-padding-vert {
+    padding: 8px 0;
 }

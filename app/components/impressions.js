@@ -47,7 +47,7 @@ angular.module("ngapp").controller("ImpressionsController", function(shared, $st
     }
 
     this.getImpressions = function () {
-      $http({method: 'GET',url: shared.apiSrv+'impressions.json'})
+      $http({method: 'GET',url: shared.apiSrv+'impressions.php'})
       .then(function successCallback(response) {
         ctrl.photoList = response.data;
       }, function errorCallback(response) {

@@ -10,6 +10,7 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
+    <preference name="orientation" value="portrait" />
     <plugin name="cordova-plugin-firebase" spec="https://phonegap:nubenum-phonegap@git.nubenum.de/robin/cordova-plugin-firebase-ebs.git" />
     <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.6" />

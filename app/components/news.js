@@ -27,7 +27,7 @@ angular.module("ngapp").controller("NewsController", function(shared, $state, $s
     }
 
     this.getNews = function () {
-      $http({method: 'GET',url: shared.apiSrv+'news.json'})
+      $http({method: 'GET',url: shared.apiSrv+'news.php'})
       .then(function successCallback(response) {
             console.log('news updated');
             ctrl.$storage.news = response.data;

@@ -11,10 +11,10 @@
       <md-tab ng-repeat="day in schedule.days" label="{{day.title}}">
         <md-content class="card-bg">
           <div class="max-width">
-            <md-card ng-repeat="session in filtered = (schedule.$storage.data.schedule.concat(schedule.isPersonal ? schedule.$storage.data.invites : []) | filter:{day:day.id}:true | filter:schedule.personalFilter) | orderBy:'start'">
+            <md-card ng-repeat="session in (schedule.$storage.data.schedule.concat(schedule.isPersonal ? schedule.$storage.data.invites : []) | filter:{day:day.id}:true | filter:schedule.personalFilter) | orderBy:'start'">
               <md-card-title>
                 <md-card-title-text layout-fill>
-                  <span ng-if="session.type != 'generic'" class="md-subhead upper" style="color:#{{schedule.typeColors[session.type]}}">{{schedule.getTypeName(session)}}</span>
+                  <span ng-if="session.type != 'generic' && session.type != 'none'" class="md-subhead upper" style="color:#{{schedule.typeColors[session.type]}}">{{schedule.getTypeName(session)}}</span>
                   <h3 ng-if="session.type == 'speech'" ng-init="speaker = schedule.getSpeakerById(session.speakers[0])" ng-click="schedule.showSpeaker($event, session.speakers[0])">
                     {{speaker.name}}
                     <span class="md-subhead">{{speaker.info+(speaker.co.length > 0 ? ' // ':'')+speaker.co}}</span>
