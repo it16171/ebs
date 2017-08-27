@@ -81,7 +81,8 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
         ],
         "pickupLocations" : [
             {"id": "oestrich-winkel-bhf", "lat": 50.002455, "lon" : 8.019080, "name": "Oestrich-Winkel Bhf"},
-            {"id": "eltville-bhf", "lat": 50.027414, "lon" : 8.121395, "name": "Eltville Bhf"}
+            {"id": "eltville-bhf", "lat": 50.027414, "lon" : 8.121395, "name": "Eltville Bhf"},
+            {"id": "hallgarten", "lat": 50.024311, "lon" :  8.036258, "name": "Hallgarten Junction"}
         ]
     };
 
