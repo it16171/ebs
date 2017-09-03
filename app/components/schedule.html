@@ -30,7 +30,7 @@
                   </span>
                   <span ng-if="session.type != 'speech'" layout="column" layout-align="center start">
                       <md-button ng-repeat="speakerId in session.speakers" ng-init="speaker = schedule.getSpeakerById(speakerId)" class="block-button subhead-button" ng-click="schedule.showSpeaker($event, speakerId)">
-                        {{$index == session.speakers.length-1 && session.type == 'panel' ? 'Host: ' : ''}}{{speaker.name}} 
+                        {{$index == session.speakers.length-1 && session.type == 'panel' ? 'Moderator: ' : ''}}{{speaker.name}} 
                         <div class="sh">{{speaker.info+(speaker.co.length > 0 ? ' // ':'')+speaker.co}}</div>
                       </md-button>                  
                   <span>

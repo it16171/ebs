@@ -21,6 +21,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     this.typeColors = this.$storage.data.scheduleTypeColors;
 
     this.getTypeName = function(session) {
+        if (session.type == 'panel') return 'Panel Discussion';
         return session.type.replace('-', ' ');
     }
 
@@ -38,6 +39,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
         return this.lZ(parseInt(parts[0])+Math.floor(newM/60))+':'+this.lZ(newM%60);
     }
     this.getSessionTimeString = function(start, duration) {
+        if (duration == 0) return start;
         return start+'-'+this.timeCalc(start, duration);
     }
 
