@@ -44,4 +44,6 @@ angular.module("ngapp").controller("ShuttleController", function(shared, $state,
 
     ctrl.getShuttleInfo();
 
+    console.log(ctrl.$storage.settings.shuttleRequestedTo, ctrl.$storage.settings.shuttleStatus);
+
 });

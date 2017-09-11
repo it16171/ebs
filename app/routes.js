@@ -105,5 +105,5 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
         controller: "AboutController",
         controllerAs: "about"
     });
-
+    
 }]);

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "ngMap" ])
+angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "ngMap", "dcbImgFallback" ])
 
 .run(function(shared, $rootScope, $cordovaDevice, $cordovaStatusbar, $localStorage, $state, $mdDialog, $transitions){
   
@@ -65,7 +65,6 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     
       if (angular.element(document.body).hasClass('md-dialog-is-showing')) {
         $mdDialog.cancel();
-
         //return false;
       }
       shared.updateData();
@@ -73,7 +72,7 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
     
 })
 
-.config(function($mdThemingProvider, $mdGestureProvider) { // Angular-Material Color Theming
+.config(function($mdThemingProvider, $mdGestureProvider) {
   $mdGestureProvider.skipClickHijack();
 
   $mdThemingProvider.definePalette('ebsprimary', {

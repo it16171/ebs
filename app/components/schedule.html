@@ -37,8 +37,8 @@
                   <span class="md-subhead" md-colors="{color:'warn'}">{{session.alert}}</span>
                 </md-card-title-text>
                 <md-card-title-media>
-                  <div ng-if="session.type == 'speech'" class="md-media-sm card-media">
-                    <img ng-src="img/speakers/{{session.speakers[0]}}.jpg" ng-click="schedule.showSpeaker($event, session.speakers[0])" class="md-avatar">
+                  <div ng-if="session.speakers.length == 1" class="md-media-sm card-media">
+                    <img ng-src="img/speakers/{{session.speakers[0]}}_small.jpg" loading-src="img/speaker_small.jpg" ng-click="schedule.showSpeaker($event, session.speakers[0])" class="md-avatar">
                   </div>
                 </md-card-title-media>
               </md-card-title>
@@ -106,7 +106,7 @@
             </div>
             <div>
               <md-icon class="md-18">business</md-icon>
-              <md-select ng-model="selectedCompany" placeholder="Company" class="select-inline">
+              <md-select ng-model="selectedCompany" placeholder="{{type== 'workshop' ? 'Workshop' : 'Interview'}}" class="select-inline">
                 <md-option ng-repeat="company in schedule.$storage.data.invites | filter:{type:type,day:selectedDay}:true" ng-value="company.id">{{company.title}}</md-option>
               </md-select>
             </div>
@@ -136,10 +136,10 @@
 
   <div style="visibility: hidden">
     <div class="md-dialog-container" id="detail-dialog">
-      <md-dialog layout="column" layout-align="center center"> 
+      <md-dialog layout="column"> 
         <md-dialog-content layout-padding>
-            <h4>{{session.title}}</h4>
-            <p class="longtext">{{session.info}}</p>
+            <h3>{{session.title}}</h3>
+            <p ng-repeat="frag in session.info.split('\n') track by $index" class="longtext">{{frag}}</p>
         </md-dialog-content>
         <md-dialog-actions layout="row">          
           <span flex></span>          

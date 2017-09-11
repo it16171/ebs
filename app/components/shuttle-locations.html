@@ -10,20 +10,9 @@
          
    
     <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
-      <md-tab label="List">
-        <md-tab-content>
-          <md-list flex>
-            <md-list-item ng-repeat="location in shuttleLocations.$storage.data.pickupLocations" class="secondary-button-padding">
-              <p>{{ location.name }}</p>
-              <md-button class="md-secondary" ng-href="https://www.google.de/maps/search/{{location.lat}},{{location.lon}}">Route</md-button>
-              <md-button ng-if="!shuttleLocations.$storage.data.shuttleDisabled" class="md-secondary" ng-click="shuttleLocations.confirmRequest($event, location.id)">Ask now</md-button>
-            </md-list-item>
-          </md-list>
-        </md-tab-content>
-      </md-tab>
       <md-tab label="Map" layout="column" flex>
         <md-tab-content layout="column" flex>
-          <p ng-if="!shuttleLocations.map" layout-padding class="empty-note">You need an internet connection to view the map.</p>
+          <p ng-if="!shuttleLocations.map" layout-padding class="empty-note">You need an internet connection to view the map and to ask for a shuttle. You can however view the list of available locations offline.</p>
           <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyA8saAicVtJk5Ht19mlC5GJrsqmLnADwDQ" layout-fill>
             <ng-map center="50.0121135,8.0504839" zoom="11" layout-fill>
 
@@ -38,13 +27,38 @@
               <info-window id="info">
                 <div ng-non-bindable="">
                   <p>{{shuttleLocations.currentMarker.name}}</p>
-                  <md-button class="block-button" ng-href="https://www.google.de/maps/search/{{shuttleLocations.currentMarker.lat}},{{shuttleLocations.currentMarker.lon}}">Route</md-button>
-                  <md-button class="block-button" ng-if="!shuttleLocations.$storage.data.shuttleDisabled" ng-click="shuttleLocations.confirmRequest($event, shuttleLocations.currentMarker.id)">Ask now</md-button>
+                  <md-button class="block-button" ng-href="https://www.google.de/maps/search/{{shuttleLocations.currentMarker.lat}},{{shuttleLocations.currentMarker.lon}}">Directions on Google Maps</md-button>
+                  <md-button class="block-button" ng-if="!shuttleLocations.$storage.data.shuttleDisabled" ng-click="shuttleLocations.confirmRequest($event, shuttleLocations.currentMarker.id)">Ask for a shuttle</md-button>
                 </div>
               </info-window>
             </ng-map>
           </div>
          
+        </md-tab-content>
+      </md-tab>
+      <md-tab label="List">
+        <md-tab-content>
+          <md-list flex>
+            <md-list-item ng-repeat="location in shuttleLocations.$storage.data.pickupLocations" class="secondary-button-padding" ng-click="shuttleLocations.viewLocation($event, location)">
+              <md-icon>room</md-icon>
+              <p>{{ location.name }}</p>
+            </md-list-item>
+          </md-list>
+          <div style="visibility: hidden">
+              <div class="md-dialog-container" id="location-dialog">
+                <md-dialog layout="column"> 
+                  <md-dialog-content layout-padding>
+                      <h4>{{location.name}}</h4>
+                      <md-button ng-if="!shuttleDisabled" class="md-secondary" ng-click="confirmRequest($event, location)">Ask for a shuttle</md-button>                     
+                      <md-button class="md-secondary" ng-href="https://www.google.de/maps/search/{{location.lat}},{{location.lon}}">Directions on Google Maps</md-button>
+                  </md-dialog-content>
+                  <md-dialog-actions layout="row">          
+                    <span flex></span>
+                    <md-button ng-click="hide()" class="icon-text"><md-icon>close</md-icon> Cancel</md-button>     
+                  </md-dialog-actions>
+                </md-dialog>
+              </div>
+            </div>
         </md-tab-content>
       </md-tab>
   </md-tabs>

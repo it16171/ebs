@@ -35,24 +35,51 @@ angular.module("ngapp").controller("ShuttleLocationsController", function(shared
       });       
     }
 
-
-    this.confirmRequest = function (ev, locationId) {
-      var confirm = $mdDialog.confirm()
-      .title('Ask for a shuttle')
-      .textContent('Do you really want to ask for a shuttle now?')
-      .ariaLabel('Confirm')
-      .targetEvent(ev)
-      .ok('Ask now')
-      .cancel('Cancel');
-
-      $mdDialog.show(confirm).then(function() {
-        ctrl.requestShuttle(locationId)
-      }, function() {
-        
-      });
+    this.viewLocation = function ($event, location) {
+      $mdDialog.show({
+        locals: {locationToView: location},
+        contentElement: '#location-dialog',
+        parent: angular.element(document.body),
+        controller: LocationDialogController,
+        targetEvent: $event,
+        clickOutsideToClose: true,
+        fullscreen: false,
+        scope: $scope,
+        preserveScope: true
+    });      
     }
+  
 
   
+
+    function LocationDialogController($scope, $mdDialog, locationToView) {
+        $scope.location = locationToView;
+        $scope.shuttleDisabled = ctrl.$storage.data.shuttleDisabled;
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.confirmRequest = function (ev, location) {
+          var confirm = $mdDialog.confirm()
+          .title('Ask for a shuttle')
+          .textContent('Do you really want to ask for a shuttle at '+location.name+' now?')
+          .ariaLabel('Confirm')
+          .targetEvent(ev)
+          .ok('Ask now')
+          .cancel('Cancel');
+    
+          $mdDialog.show(confirm).then(function() {
+            ctrl.requestShuttle(location.id)
+          }, function() {
+            
+          });
+        }
+    }
 
     this.title = $state.current.title;
 });

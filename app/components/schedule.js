@@ -22,6 +22,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
     this.getTypeName = function(session) {
         if (session.type == 'panel') return 'Panel Discussion';
+        if (session.type == 'presentation') return 'Company Presentation';
         return session.type.replace('-', ' ');
     }
 
@@ -44,7 +45,7 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
     }
 
     this.personalFilter = function(session) {
-        if (session.type == 'interview') session.start = ctrl.s.starredEvents[session.id];
+        if (session.type == 'interview' && ctrl.s.starredEvents) session.start = ctrl.s.starredEvents[session.id];
         return !ctrl.isPersonal || session.type == 'generic' || ctrl.$storage.settings.starredEvents && ctrl.$storage.settings.starredEvents[session.id];
     }
 

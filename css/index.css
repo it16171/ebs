@@ -129,6 +129,11 @@ h3 .md-subhead {
     line-height: inherit;
     margin-top:4px;
 }
+md-card .md-subhead {
+    padding-top: 0;
+    font-size: 14px;
+    color: rgba(0,0,0,0.54);
+}
 .subhead {
     color: rgba(0,0,0,0.54);;
     padding: 8px 0 0 0;
