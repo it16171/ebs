@@ -72,9 +72,7 @@ angular.module("ngapp").service("shared", function($http, $localStorage, $mdToas
             {"type": "generic", "id": "dinner-28", "day" : 28, "start": "18:00", "duration": 150, "room": "Dining Hall", "speakers": [], "alert": "", "title": "Dinner", "info": ""},
             {"type": "generic", "id": "dinner-29", "day" : 29, "start": "18:00", "duration": 150, "room": "Dining Hall", "speakers": [], "alert": "", "title": "Dinner", "info": ""},
             {"type": "generic", "id": "dinner-30", "day" : 30, "start": "18:00", "duration": 150, "room": "Dining Hall", "speakers": [], "alert": "", "title": "Dinner with Live Cooking", "info": ""},
-            {"type": "generic", "id": "party", "day" : 30, "start": "22:30", "duration": 0, "room": "Pavilion", "speakers": [], "alert": "", "title": "After Party", "info": ""},
-
-          
+            {"type": "generic", "id": "party", "day" : 30, "start": "22:30", "duration": 0, "room": "Pavilion", "speakers": [], "alert": "", "title": "After Party", "info": ""}          
         ],
         "invites": [
             {"type": "workshop", "id": "armira-ws", "day" : 28, "start": "16:45", "duration": 210, "room": "K1", "speakers": [], "alert": "", "title": "Armira", "info": ""},

@@ -27,8 +27,8 @@
               <info-window id="info">
                 <div ng-non-bindable="">
                   <p>{{shuttleLocations.currentMarker.name}}</p>
-                  <md-button class="block-button" ng-href="https://www.google.de/maps/search/{{shuttleLocations.currentMarker.lat}},{{shuttleLocations.currentMarker.lon}}">Directions on Google Maps</md-button>
-                  <md-button class="block-button" ng-if="!shuttleLocations.$storage.data.shuttleDisabled" ng-click="shuttleLocations.confirmRequest($event, shuttleLocations.currentMarker.id)">Ask for a shuttle</md-button>
+                  <md-button class="block-button" ng-if="!shuttleLocations.$storage.data.shuttleDisabled" ng-click="shuttleLocations.confirmRequest($event, shuttleLocations.currentMarker)">Ask for a shuttle</md-button>
+                  <md-button class="block-button" ng-href="https://www.google.de/maps/search/{{shuttleLocations.currentMarker.lat}},{{shuttleLocations.currentMarker.lon}}">Directions on Google Maps</md-button>                  
                 </div>
               </info-window>
             </ng-map>
