@@ -2,7 +2,7 @@
   <md-toolbar class="md-whiteframe-4dp">
     <div class="md-toolbar-tools">
       <md-button class="md-icon-button" onclick="history.back()">
-        <md-icon>arrow_back</md-icon>
+        <md-icon>&#xE5C4;</md-icon>
       </md-button>
       <p>{{ shuttle.title }}</p>
     </div>
@@ -21,7 +21,7 @@
       </p>
       <md-button ng-if="!shuttle.$storage.data.shuttleDisabled && shuttle.$storage.settings.shuttleRequestedTo && shuttle.$storage.settings.shuttleStatus!=3"  ng-href="https://www.google.de/maps/search/{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).lat}},{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).lon}}">Directions to there</md-button>
       <md-button class="md-accent md-raised" aria-label="Ask for a shuttle" ng-href="#/shuttleLocations" ng-if="shuttle.$storage.settings.shuttleStatus != 1 && shuttle.$storage.settings.shuttleStatus != 2 || shuttle.$storage.data.shuttleDisabled">
-          <md-icon>directions_bus</md-icon> {{shuttle.$storage.data.shuttleDisabled ? 'View Pick Up Locations' : 'Ask for a shuttle'}}
+          <md-icon>&#xE530;</md-icon> {{shuttle.$storage.data.shuttleDisabled ? 'View Pick Up Locations' : 'Ask for a shuttle'}}
       </md-button>
       <md-button class="md-raised" aria-label="Cancel request" ng-click="shuttle.cancelShuttle()" ng-if="false && shuttle.$storage.settings.shuttleStatus<2">
           Cancel request
