@@ -25,9 +25,7 @@
         <string>We are using the Photo Library to allow you to save your photos from the EBS Symposium Photo Wall</string>
     </config-file>
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.3" />
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0">
-        <param name="XWALK_MODE" value="lite">
-    </plugin>
+    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0" />
 
     <icon src="icon.png" />
 
