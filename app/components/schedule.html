@@ -44,7 +44,7 @@
               </md-card-title>
               <md-card-actions ng-if="session.type != 'generic'" layout="row" layout-align="end center" layout-wrap>
                 <md-button ng-if="session.type == 'speech' && (!schedule.s.ratedSessions || schedule.s.ratedSessions.indexOf(session.id) == -1)" class="icon-text" ng-click="schedule.rateSession($event, session)" >
-                  <md-icon><&#xE24B;</md-icon> Rate {{session.type}}
+                  <md-icon>&#xE24B;</md-icon> Rate {{session.type}}
                 </md-button>
                 <md-button ng-if="session.info && session.info.length > 0" class="icon-text" ng-click="schedule.showDetail($event, session)">
                   <md-icon>info_outline</md-icon> View Details
