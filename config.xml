@@ -9,7 +9,7 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="16" />
     <preference name="orientation" value="portrait" />
     <plugin name="cordova-plugin-firebase" spec="https://phonegap:nubenum-phonegap@git.nubenum.de/robin/cordova-plugin-firebase-ebs.git" />
     <plugin name="cordova-plugin-console" source="npm" spec="~1.0.7" />
@@ -25,6 +25,7 @@
         <string>We are using the Photo Library to allow you to save your photos from the EBS Symposium Photo Wall</string>
     </config-file>
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.3" />
+    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0" />
     
     <icon src="icon.png" />
 
