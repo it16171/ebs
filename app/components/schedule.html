@@ -137,9 +137,11 @@
   <div style="visibility: hidden">
     <div class="md-dialog-container" id="detail-dialog">
       <md-dialog layout="column"> 
-        <md-dialog-content layout-padding>
+        <md-dialog-content>
+          <div class="md-dialog-content">
             <h3>{{session.title}}</h3>
             <p ng-repeat="frag in session.info.split('\n') track by $index" class="longtext">{{frag}}</p>
+          </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">          
           <span flex></span>          
