@@ -12,12 +12,6 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
     this.title = $state.current.title;
 
-    this.days = [
-        {"id":28, "title":"Thu 28th"},
-        {"id":29, "title":"Fri 29th"},
-        {"id":30, "title":"Sat 30th"},
-    ];
-
     this.typeColors = this.$storage.data.scheduleTypeColors;
 
     this.getTypeName = function(session) {
@@ -28,8 +22,10 @@ angular.module("ngapp").controller("ScheduleController", function(shared, $state
 
     var date = new Date();
     var day = date.getDate();
-    if (day < 28 || day > 30) day = 28;  
-    this.today = day-28;
+    var firstDay = this.$storage.data.days[0].id;
+    var lastDay = this.$storage.data.days[this.$storage.data.days.length-1].id;
+    if (day < firstDay || day > lastDay) day = firstDay;  
+    this.today = day-firstDay;
 
     this.lZ = function(num) {
         return (num<10?'0':'')+num;

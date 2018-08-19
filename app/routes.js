@@ -7,7 +7,7 @@ angular.module("ngapp").config(["$stateProvider", "$urlRouterProvider", function
     $stateProvider.state("main", {
         url: "/main",
         templateUrl: "app/components/main.html",
-        title: "28th EBS Symposium",
+        title: "EBS Symposium",
         controller: "MainController",
         controllerAs: "main"
     });
