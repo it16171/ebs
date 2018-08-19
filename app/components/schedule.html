@@ -8,7 +8,7 @@
     </div>
   </md-toolbar>
   <md-tabs md-stretch-tabs="auto" class="md-primary" md-selected="schedule.today" flex>
-      <md-tab ng-repeat="day in schedule.days" label="{{day.title}}">
+      <md-tab ng-repeat="day in schedule.$storage.data.days" label="{{day.title}}">
         <md-content class="card-bg">
           <div class="max-width">
             <md-card ng-repeat="session in (schedule.$storage.data.schedule.concat(schedule.isPersonal ? schedule.$storage.data.invites : []) | filter:{day:day.id}:true | filter:schedule.personalFilter) | orderBy:'start'">
@@ -101,7 +101,7 @@
             <div>
               <md-icon class="md-18">event</md-icon>
               <md-select ng-model="selectedDay" placeholder="Day" class="select-inline">
-                <md-option ng-repeat="day in schedule.days" ng-value="day.id">{{day.title}}</md-option>
+                <md-option ng-repeat="day in schedule.$storage.data.days" ng-value="day.id">{{day.title}}</md-option>
               </md-select>
             </div>
             <div>

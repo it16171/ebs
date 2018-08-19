@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.nubenum.app.ebs" version="1.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>28th EBS Symposium</name>
+<widget id="de.nubenum.app.ebs" version="1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>EBS Symposium</name>
     <description>
-        The app for the 28th EBS Symposium
+        The app for the yearly EBS Symposium
     </description>
     <author email="ebs@nubenum.de" href="http://nubenum.de">
         Nubenum
