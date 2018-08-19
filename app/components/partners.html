@@ -8,7 +8,7 @@
     </div>
   </md-toolbar>
   <md-tabs md-stretch-tabs="auto" class="md-primary" flex>
-        <md-tab ng-repeat="filter in partners.filters" label="{{filter.name}}">
+        <md-tab ng-repeat="filter in partners.$storage.data.partnerFilters" label="{{filter.name}}">
           <md-tab-content class="card-bg">
             <p ng-if="filter.id == 'corporate'" class="subhead">Corporate Partners</p>
             <div style="padding:4px;" layout="row" layout-wrap>

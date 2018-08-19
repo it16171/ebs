@@ -11,14 +11,14 @@
   <md-content class="card-bg">
 
     <div style="padding:4px;" layout="row" layout-wrap>
-      <div flex="{{$index ? 50 : 100}}" flex-gt-xs="{{$index ? 33 : 66}}" flex-gt-sm="{{$index ? 25 : 50}}" flex-gt-md="{{$index ? 10 : 20}}" flex-gt-lg="{{$index ? 50 : 100}}" 
-      ng-repeat="speaker in speakers.$storage.data.speakers track by $index" style="padding:4px" ng-if="speaker.web < 3">
+      <div flex="{{speaker.patron ? 100 : 50}}" flex-gt-xs="{{speaker.patron ? 66 : 33}}" flex-gt-sm="{{speaker.patron ? 50 : 25}}" flex-gt-md="{{speaker.patron ? 40 : 20}}" flex-gt-lg="{{speaker.patron ? 20 : 10}}" 
+      ng-repeat="speaker in speakers.$storage.data.speakers" style="padding:4px" ng-if="speaker.web < 3">
           <md-card style="overflow:hidden;height:100%;margin:0;" ng-click="speakers.showSpeaker($event, speaker)">
             <img ng-src="{{speaker.web==1 ? 'https://ebs.api.nubenum.de/res' : 'img'}}/speakers/{{speaker.id+($index ? '_small' : '')}}.jpg" loading-src="img/speaker{{$index ? '_small' : ''}}.jpg" class="md-card-image">
             <md-card-content class="md-padding">
-              <img ng-src="{{speaker.web==1 ? 'https://ebs.api.nubenum.de/res' : 'img'}}/speakers/{{speaker.id}}_logo.png" loading-src="img/speaker_logo.png" style="max-width:100%;">
+              <img ng-if="!speaker.nologo" ng-src="{{speaker.web==1 ? 'https://ebs.api.nubenum.de/res' : 'img'}}/speakers/{{speaker.id}}_logo.png" loading-src="img/speaker_logo.png" style="max-width:100%;">
               <h4 style="margin-bottom:4px;">{{speaker.name}}</h4>
-              <div ng-if="$index == 0" class="md-subhead upper">Our Patron</div>
+              <div ng-if="speaker.patron" class="md-subhead upper">{{speaker.patron}}</div>
               <span class="subhead" style="font-size:14px;">{{speaker.info+(speaker.co.length > 0 ? ' // ':'')+speaker.co}}</p>
             </md-card-content>
           </md-card>
