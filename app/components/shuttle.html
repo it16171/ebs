@@ -18,7 +18,7 @@
         <span ng-if="shuttle.$storage.settings.shuttleStatus==2" md-colors="{color:'warn'}">Your shuttle is on its way.</span>
         <span ng-if="shuttle.$storage.settings.shuttleStatus==3" md-colors="{color:'warn'}">We hope you had a good ride. Still left in the rain? Just need another one?</span>
       </p>
-      <p ng-if="shuttle.$storage.data.shuttleInfo">{{shuttle.$storage.data.shuttleInfo}}</p>
+      <p ng-if="shuttle.$storage.data.shuttleInfo" layout-padding>{{shuttle.$storage.data.shuttleInfo}}</p>
       <md-button ng-if="!shuttle.$storage.data.shuttleDisabled && shuttle.$storage.settings.shuttleRequestedTo && shuttle.$storage.settings.shuttleStatus!=3"  ng-href="https://www.google.de/maps/search/{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).lat}},{{shuttle.getObjectById(shuttle.$storage.settings.shuttleRequestedTo, shuttle.$storage.data.pickupLocations).lon}}">Directions to there</md-button>
       <md-button class="md-accent md-raised" aria-label="Ask for a shuttle" ng-href="#/shuttleLocations" ng-if="shuttle.$storage.settings.shuttleStatus != 1 && shuttle.$storage.settings.shuttleStatus != 2 || shuttle.$storage.data.shuttleDisabled">
           <md-icon>&#xE530;</md-icon> {{shuttle.$storage.data.shuttleDisabled ? 'View Pick Up Locations' : 'Ask for a shuttle'}}
