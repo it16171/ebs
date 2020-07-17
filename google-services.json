@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "397030068457",
+    "firebase_url": "https://ebs-symposium.firebaseio.com",
+    "project_id": "ebs-symposium",
+    "storage_bucket": "ebs-symposium.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397030068457:android:f1f8d898ecbec427",
+        "android_client_info": {
+          "package_name": "de.nubenum.app.ebs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397030068457-1odl4cqgs6b8uond64sgrqtdnqp8ita6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkiG258ITNGSzebeAT0TA5QEOJUKhQ0Wg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
