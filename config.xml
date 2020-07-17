@@ -15,6 +15,8 @@
     <preference name="phonegap-version" value="cli-9.0.0" />
 
     <plugin name="cordova-plugin-firebasex" spec="https://phonegap:nubenum-phonegap@git.nubenum.de/robin/cordova-plugin-firebasex-ebs.git" />
+    <plugin name="cordova-plugin-androidx" spec="https://phonegap:nubenum-phonegap@git.nubenum.de/robin/cordova-plugin-androidx.git" />
+    <plugin name="cordova-plugin-androidx-adapter" spec="https://phonegap:nubenum-phonegap@git.nubenum.de/robin/cordova-plugin-androidx-adapter.git" />
     <!--<plugin name="cordova-plugin-console" source="npm" spec="~1.1.0" />-->
     <plugin name="cordova-plugin-androidx" source="npm" />
     <plugin name="cordova-plugin-androidx-adapter" source="npm" />
