@@ -1,4 +1,8 @@
 
+cordova-plugin*
+node_modules
+package*
+
 # Created by https://www.gitignore.io/api/apachecordova
 
 ### ApacheCordova ###
