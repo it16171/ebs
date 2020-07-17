@@ -11,9 +11,9 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
 
     window.FirebasePlugin.grantPermission();
 
-    window.FirebasePlugin.hasPermission(function(data){
-      console.log(data.isEnabled);
-      if (data.isEnabled) {
+    window.FirebasePlugin.hasPermission(function(hasPermission){
+      console.log(hasPermission);
+      if (hasPermission) {
         if ($localStorage.settings.pushNews == undefined) {
             $localStorage.settings.pushNews = true;
             window.FirebasePlugin.subscribe("news");
@@ -34,7 +34,7 @@ angular.module("ngapp", [ "ui.router", "ngMaterial", "ngCordova", "ngStorage", "
 
  
 
-    window.FirebasePlugin.onNotificationOpen(function(notification) {
+    window.FirebasePlugin.onMessageReceived(function(notification) {
         console.log(JSON.stringify(notification));
         shared.updateData(true);
         var action = 'news'; 
